@@ -1,2 +1,3 @@
 # probate-wa-post-deployment-ft-tests
-WA Task Configuration files and related tests.  
+
+Work Allocation Functional Tests to run against a running Probate WA environment.
