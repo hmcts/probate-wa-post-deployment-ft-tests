@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Use this script if you would like to run your probate-post-deployment-ft-tests against a lower environment except preview.
+# Use this script if you would like to run your probate-wa-post-deployment-ft-tests against a lower environment except preview.
 # Note the tests rely on the correct DMN files being deployed in the target env.
 #
 # In most cases it is preferred to use the script: ./run-ft-preview.sh

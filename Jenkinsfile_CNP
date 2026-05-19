@@ -5,8 +5,8 @@
 import uk.gov.hmcts.contino.GithubAPI
 
 def type = "java"
-def product = "sscs"
-def component = "post-deployment-ft-tests"
+def product = "probate"
+def component = "wa-post-deployment-ft-tests"
 
 def secrets = [
   'wa-${env}' : [
@@ -37,7 +37,7 @@ withNightlyPipeline(type, product, component) {
   def githubApi = new GithubAPI(this)
 
   loadVaultSecrets(secrets)
-//  enableSlackNotifications('#sscs-tech')
+  enableSlackNotifications('#probate-wa-tech')
 
   env.AZURE_SERVICE_BUS_TOPIC_NAME="ccd-case-events"
   env.AZURE_SERVICE_BUS_MESSAGE_AUTHOR="probate-aat"

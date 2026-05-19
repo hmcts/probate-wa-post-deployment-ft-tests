@@ -133,8 +133,8 @@ project.tasks.named('sonarqube') {
 
 sonarqube {
     properties {
-        property "sonar.projectName", "Reform :: sscs-post-deployment-ft-tests"
-        property "sonar.projectKey", "uk.gov.hmcts.reform:sscs-post-deployment-ft-tests"
+        property "sonar.projectName", "Reform :: probate-wa-post-deployment-ft-tests"
+        property "sonar.projectKey", "uk.gov.hmcts.reform:probate-wa-post-deployment-ft-tests"
         property "sonar.coverage.jacoco.xmlReportPaths", "${jacocoTestReport.reports.xml.outputLocation}"
     }
 }
@@ -272,7 +272,7 @@ application {
 
 bootJar {
     getArchiveFileName().set(provider {
-        'sscs-post-deployment-ft-tests.jar'
+        'probate-wa-post-deployment-ft-tests.jar'
     })
 
     manifest {

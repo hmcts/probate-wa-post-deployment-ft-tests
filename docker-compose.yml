@@ -1,7 +1,7 @@
 version: '2.1'
 
 services:
-  sscs-post-deployment-ft-tests:
+  probate-wa-post-deployment-ft-tests:
     build:
       context: .
       args:

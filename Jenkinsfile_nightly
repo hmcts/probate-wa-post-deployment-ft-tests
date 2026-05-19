@@ -3,8 +3,8 @@
 @Library("Infrastructure")
 
 def type = "java"
-def product = "sscs"
-def component = "post-deployment-ft-tests"
+def product = "probate"
+def component = "wa-post-deployment-ft-tests"
 
 def secrets = [
   'wa-${env}'  : [
