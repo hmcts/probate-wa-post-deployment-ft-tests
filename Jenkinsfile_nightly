@@ -44,16 +44,27 @@ withNightlyPipeline(type, product, component) {
   env.OPEN_ID_IDAM_URL = "https://idam-web-public.aat.platform.hmcts.net"
   env.DOCUMENT_STORE_URL = "http://dm-store-aat.service.core-compute-aat.internal"
 
-  env.CCD_URL = "http://ccd-data-store-api-aat.service.core-compute-aat.internal"
-  env.WA_TASK_MANAGEMENT_API_URL = "http://wa-task-management-api-aat.service.core-compute-aat.internal"
-  env.WA_TASK_MONITOR_URL = "http://wa-task-monitor-aat.service.core-compute-aat.internal"
-  env.CAMUNDA_URL = "http://camunda-api-aat.service.core-compute-aat.internal/engine-rest"
-  env.ROLE_ASSIGNMENT_URL = "http://am-role-assignment-service-aat.service.core-compute-aat.internal"
-  env.WA_CASE_EVENT_HANDLER_URL = "http://wa-case-event-handler-aat.service.core-compute-aat.internal"
+  // Disabled URLs as WA is not rolled out to AAT
+//  env.CCD_URL = "http://ccd-data-store-api-aat.service.core-compute-aat.internal"
+//  env.WA_TASK_MANAGEMENT_API_URL = "http://wa-task-management-api-aat.service.core-compute-aat.internal"
+//  env.WA_TASK_MONITOR_URL = "http://wa-task-monitor-aat.service.core-compute-aat.internal"
+//  env.CAMUNDA_URL = "http://camunda-api-aat.service.core-compute-aat.internal/engine-rest"
+//  env.ROLE_ASSIGNMENT_URL = "http://am-role-assignment-service-aat.service.core-compute-aat.internal"
+//  env.WA_CASE_EVENT_HANDLER_URL = "http://wa-case-event-handler-aat.service.core-compute-aat.internal"
+
+  def PROBATE_WA_PR = "3791"
+
+  env.WA_POST_DEPLOYMENT_TEST_ENVIRONMENT="preview"
+  env.CCD_URL="https://ccd-data-store-api-probate-back-office-pr-${PROBATE_WA_PR}.preview.platform.hmcts.net"
+  env.WA_TASK_MANAGEMENT_API_URL="https://wa-task-management-api-probate-back-office-pr-${PROBATE_WA_PR}.preview.platform.hmcts.net"
+  env.WA_TASK_MONITOR_URL="https://wa-task-monitor-probate-back-office-pr-${PROBATE_WA_PR}.preview.platform.hmcts.net"
+  env.CAMUNDA_URL="https://camunda-probate-back-office-pr-${PROBATE_WA_PR}.preview.platform.hmcts.net/engine-rest"
+  env.ROLE_ASSIGNMENT_URL="https://am-role-assignment-service-probate-back-office-pr-${PROBATE_WA_PR}.preview.platform.hmcts.net"
+  env.WA_CASE_EVENT_HANDLER_URL="https://wa-case-event-handler-probate-back-office-pr-${PROBATE_WA_PR}.preview.platform.hmcts.net"
 
   loadVaultSecrets(secrets)
   // Disable full functional tests, as WA is not rolled out to AAT
-  // enableFullFunctionalTest(60)
+  enableFullFunctionalTest(60)
 
   afterAlways('fullFunctionalTest') {
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/build/reports/**/*'
