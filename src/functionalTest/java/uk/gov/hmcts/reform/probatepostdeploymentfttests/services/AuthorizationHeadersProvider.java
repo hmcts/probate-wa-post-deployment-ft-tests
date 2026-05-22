@@ -66,7 +66,7 @@ public class AuthorizationHeadersProvider  implements AuthorizationHeaders {
 
     @Override
     public Headers getProbateSystemUserAuthorization() {
-        return getSystemUserAuthorization("SscsSystemUser", "SYSTEMUPDATE_USERNAME", "SYSTEMUPDATE_PASSWORD");
+        return getSystemUserAuthorization("ProbateSystemUser", "SYSTEMUPDATE_USERNAME", "SYSTEMUPDATE_PASSWORD");
     }
 
     public Headers getSystemUserAuthorization(String key, String envUsername, String envPassword) {
@@ -85,7 +85,7 @@ public class AuthorizationHeadersProvider  implements AuthorizationHeaders {
         if ("WaSystemUser".equals(request.getCredentialsKey())) {
             return getSystemUserAuthorization("WaSystemUser", "WA_SYSTEM_USERNAME", "WA_SYSTEM_PASSWORD");
         } else if ("systemupdate".equals(request.getCredentialsKey())) {
-            return getSystemUserAuthorization("SscsSystemUser", "SYSTEMUPDATE_USERNAME", "SYSTEMUPDATE_PASSWORD");
+            return getSystemUserAuthorization("ProbateSystemUser", "SYSTEMUPDATE_USERNAME", "SYSTEMUPDATE_PASSWORD");
         } else {
 
             String userEmail = findOrGenerateUserAccount(request.getCredentialsKey(), request.isGranularPermission());
