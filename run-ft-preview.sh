@@ -8,7 +8,7 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
-export TRIBUNALS_PR="$1"
+export PROBATE_WA_PR="$1"
 export PROBATE_VAULT_NAME=probate-aat
 export WA_VAULT_NAME=wa-aat
 export AZURE_SERVICE_BUS_TOPIC_NAME=ccd-case-events
@@ -21,12 +21,12 @@ export S2S_URL=http://rpe-service-auth-provider-aat.service.core-compute-aat.int
 export OPEN_ID_IDAM_URL=https://idam-web-public.aat.platform.hmcts.net
 export DOCUMENT_STORE_URL=http://dm-store-aat.service.core-compute-aat.internal
 export WA_POST_DEPLOYMENT_TEST_ENVIRONMENT=preview
-export CCD_URL=https://ccd-data-store-api-probate-back-office-pr-${TRIBUNALS_PR}.preview.platform.hmcts.net
-export WA_TASK_MANAGEMENT_API_URL=https://wa-task-management-api-probate-back-office-pr-${TRIBUNALS_PR}.preview.platform.hmcts.net
-export WA_TASK_MONITOR_URL=https://wa-task-monitor-probate-back-office-pr-${TRIBUNALS_PR}.preview.platform.hmcts.net
-export CAMUNDA_URL=https://camunda-probate-back-office-pr-${TRIBUNALS_PR}.preview.platform.hmcts.net/engine-rest
-export ROLE_ASSIGNMENT_URL=https://am-role-assignment-service-probate-back-office-pr-${TRIBUNALS_PR}.preview.platform.hmcts.net
-export WA_CASE_EVENT_HANDLER_URL=https://wa-case-event-handler-probate-back-office-pr-${TRIBUNALS_PR}.preview.platform.hmcts.net
+export CCD_URL=https://ccd-data-store-api-probate-back-office-pr-${PROBATE_WA_PR}.preview.platform.hmcts.net
+export WA_TASK_MANAGEMENT_API_URL=https://wa-task-management-api-probate-back-office-pr-${PROBATE_WA_PR}.preview.platform.hmcts.net
+export WA_TASK_MONITOR_URL=https://wa-task-monitor-probate-back-office-pr-${PROBATE_WA_PR}.preview.platform.hmcts.net
+export CAMUNDA_URL=https://camunda-probate-back-office-pr-${PROBATE_WA_PR}.preview.platform.hmcts.net/engine-rest
+export ROLE_ASSIGNMENT_URL=https://am-role-assignment-service-probate-back-office-pr-${PROBATE_WA_PR}.preview.platform.hmcts.net
+export WA_CASE_EVENT_HANDLER_URL=https://wa-case-event-handler-probate-back-office-pr-${PROBATE_WA_PR}.preview.platform.hmcts.net
 
 # Set environment variable from Azure secret vault
 # Parameters: <Environment variable name> <Vault Name> <Secret Name>
