@@ -65,6 +65,7 @@ public class ScenarioSources {
         }
 
         //scenarioPattern = "probate.json";
+        //scenarioPattern = "probate-task-actions.json";
 
         Collection<String> scenarioSources;
         try {

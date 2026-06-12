@@ -114,6 +114,14 @@ public class RoleAssignmentService {
     }
 
     public void setupRoleAssignment(Headers headers, UserInfo userInfo, String roleName) {
+        //TODO: hardcoded to support the CTSC role with requied ProbateExamining skill in authorisations to use CLAIM
+        String authorizations;
+        if (roleName.equals("ctsc")) {
+            authorizations = JsonUtil.toJsonString(List.of("SKILL:ABA6:ProbateExamining"));
+        } else {
+            authorizations = JsonUtil.toJsonString(List.of());
+        }
+
         postRoleAssignment(
             null,
             headers.getValue(AuthorizationHeadersProvider.AUTHORIZATION),
@@ -128,7 +136,7 @@ public class RoleAssignmentService {
             DEFAULT_ROLE_ASSIGNMENT_TEMPLATE,
             "STANDARD",
             roleToCategoryMap.getOrDefault(roleName, "LEGAL_OPERATIONS"),
-            JsonUtil.toJsonString(List.of()),
+            authorizations,
             "ORGANISATION",
             "PUBLIC",
             "staff-organisational-role-mapping",
