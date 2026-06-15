@@ -36,7 +36,7 @@
               "NewStateId": "CasePrinted",
               "AdditionalData": {
                 "Data": {
-                  "evidenceHandled": "No",
+                  "evidenceHandled": false,
                   "caseType": "gop"
                 }
               }
