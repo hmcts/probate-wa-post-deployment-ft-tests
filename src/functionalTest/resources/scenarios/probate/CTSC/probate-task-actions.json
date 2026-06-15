@@ -33,7 +33,13 @@
             "template": "minimal-ccd-event-message-probate.json",
             "replacements": {
               "EventId": "handleEvidence",
-              "NewStateId": "CasePrinted"
+              "NewStateId": "CasePrinted",
+              "AdditionalData": {
+                "Data": {
+                  "evidenceHandled": false,
+                  "caseType": "gop"
+                }
+              }
             }
           }
         ]
