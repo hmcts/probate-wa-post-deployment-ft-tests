@@ -65,7 +65,8 @@ public class ScenarioSources {
         }
 
 //        scenarioPattern = "probate.json";
-        scenarioPattern = "probate-task-actions.json";
+//        scenarioPattern = "probate-task-actions.json";
+        scenarioPattern = "caseprinted-solicitorsmanual-cancel.json";
 //        scenarioPattern = "caseprinted-solicitorsmanual-create.json";
 
 
