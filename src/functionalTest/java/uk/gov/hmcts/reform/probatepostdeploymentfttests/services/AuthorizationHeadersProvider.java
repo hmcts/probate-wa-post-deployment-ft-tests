@@ -230,6 +230,10 @@ public class AuthorizationHeadersProvider  implements AuthorizationHeaders {
             case "Regional-Centre-Admin":
                 roleAssignments.add("regional-centre-admin");
                 break;
+            case "team-leader":
+                roleAssignments.add("ctsc");
+                roleAssignments.add("ctsc-team-leader");
+                break;
             default:
                 throw new IllegalStateException("Credentials implementation for '" + credentialsKey + "' not found");
         }
