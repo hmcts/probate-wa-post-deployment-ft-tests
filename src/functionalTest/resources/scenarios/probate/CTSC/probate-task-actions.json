@@ -97,11 +97,12 @@
       }
     ]
   },
-  "test": {
+  "tests": [
+    {
     "request": {
       "type": "CLAIM",
       "credentials": {
-        "key": "caseworker",
+        "key": "team-leader",
         "granularPermission": true
       }
     },
@@ -137,5 +138,25 @@
         }
       }
     ]
-  }
+  },
+    {
+      "request": {
+        "type": "COMPLETE",
+        "credentials": {
+          "key": "team-leader",
+          "granularPermission": true
+        }
+      },
+      "expectations": [
+        {
+          "credentials": {
+            "key": "CTSC-Administrator",
+            "granularPermission": true
+          },
+          "status": 200,
+          "numberOfTasksAvailable": 0
+        }
+      ]
+    }
+  ]
 }

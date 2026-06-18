@@ -21,7 +21,8 @@
       }
     ]
   },
-  "test": {
+  "tests": [
+    {
     "request": {
       "credentials": {
         "key": "caseworker"
@@ -94,5 +95,6 @@
         ]
       }
     ]
-  }
+    }
+  ]
 }

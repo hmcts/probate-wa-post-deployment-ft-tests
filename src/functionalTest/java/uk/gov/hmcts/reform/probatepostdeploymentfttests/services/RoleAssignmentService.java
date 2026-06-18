@@ -39,6 +39,7 @@ public class RoleAssignmentService {
         "tribunal-caseworker", "LEGAL_OPERATIONS",
         "judge", "JUDICIAL",
         "ctsc", "CTSC",
+        "ctsc-team-leader", "CTSC",
         "regional-centre-admin", "ADMIN"
     );
 
