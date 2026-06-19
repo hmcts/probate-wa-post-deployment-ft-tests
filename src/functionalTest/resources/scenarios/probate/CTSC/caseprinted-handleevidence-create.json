@@ -82,18 +82,19 @@
                 "role_category": "CTSC",
                 "role_name": "ctsc",
                 "permissions": [ "Read", "Own", "Claim", "Unclaim", "Assign", "Unassign" ],
-                "authorisations": [ "SKILL:ABA6:ProbateExamining" ]
+                "authorisations": ["SKILL:ABA6:ProbateExamining"]
               },
               {
                 "role_category": "CTSC",
                 "role_name": "ctsc-team-leader",
                 "permissions": [ "Read", "Own", "Claim", "Unclaim", "Manage", "Complete", "Cancel", "Assign", "Unassign" ],
-                "authorisations": []
+                "authorisations": ["SKILL:ABA6:ProbateExamining"]
               }
             ]
           }
         ]
       }
     ]
-  }
+    }
+  ]
 }
