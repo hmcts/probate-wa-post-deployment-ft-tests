@@ -64,8 +64,8 @@ public class ScenarioSources {
             scenarioPattern = "*" + scenarioPattern + "*.json";
         }
 
-        //scenarioPattern = "probate.json";
-        //scenarioPattern = "probate-task-actions.json";
+        //scenarioPattern = "caseprinted-handleevidence-create.json";
+        //scenarioPattern = "caseprinted-handleevidence-claim-complete.json";
 
         Collection<String> scenarioSources;
         try {
