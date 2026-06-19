@@ -1,5 +1,5 @@
 {
-  "description": "probate create ExamineDigitalCaseProbate task cancellation",
+  "description": "probate create ExamineDigitalCaseProbate WITHDRAW task and CANCEL task",
   "enabled": true,
   "jurisdiction": "PROBATE",
   "caseType": "GrantOfRepresentation",
@@ -99,7 +99,7 @@
   },
   "test": {
     "request": {
-      "type": "CLAIM",
+      "type": "CANCEL",
       "credentials": {
         "key": "caseworker",
         "granularPermission": true
