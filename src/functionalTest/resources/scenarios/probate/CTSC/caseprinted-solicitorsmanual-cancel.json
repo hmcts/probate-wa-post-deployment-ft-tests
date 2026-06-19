@@ -57,7 +57,7 @@
           "replacements": {
             "tasks": [
               {
-                "task_state": "ASSIGNED",
+                "task_state": "assigned",
                 "task_system": "SELF",
                 "test_meta_data": [
                   {
@@ -69,7 +69,7 @@
                 "name": "Examine Digital Case - Probate",
                 "minor_priority": 500,
                 "major_priority": 5000,
-                "description": "[Amend Case Details](/cases/case-details/${[CASE_REFERENCE]}/trigger/boAmendCaseDetails)  [Issue Grant](/cases/case-details/${[CASE_REFERENCE]}/trigger/boIssueGrantForCaseMatching)  [Escalate to Registrar](/cases/case-details/${[CASE_REFERENCE]}/trigger/boEscalateToRegistrar)  [Select For QA](/cases/case-details/${[CASE_REFERENCE]}/trigger/boSelectForQA)  [SME Referral](/cases/case-details/${[CASE_REFERENCE]}/trigger/boUploadDocsForSMEReferral)  [Stop Case](/cases/case-details/${[CASE_REFERENCE]}/trigger/boStopCase)"
+                "description": "[Amend Case Details](/cases/case-details/${[CASE_REFERENCE]}/trigger/boAmendCaseDetails)  [Issue Grant](/cases/case-details/${[CASE_REFERENCE]}/trigger/boIssueGrantForCaseMatching)  [Escalate to Registrar](/cases/case-details/${[CASE_REFERENCE]}/trigger/boEscalateToRegistrar)  [Select For QA](/cases/case-details/${[CASE_REFERENCE]}/trigger/boSelectForQA)  [SME Referral](/cases/case-details/${[CASE_REFERENCE]}/trigger/boUploadDocsForSMEReferral)  [Stop Case](/cases/case-details/${[CASE_REFERENCE]}/trigger/boStopCaseForCasePrinted)"
               }
             ]
           }
@@ -97,9 +97,10 @@
       }
     ]
   },
-  "test": {
+  "tests": [
+  {
     "request": {
-      "type": "CANCEL",
+      "type": "",
       "credentials": {
         "key": "caseworker",
         "granularPermission": true
@@ -118,4 +119,5 @@
       }
     ]
   }
+  ]
 }
