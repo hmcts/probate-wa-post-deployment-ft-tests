@@ -1,5 +1,5 @@
 {
-  "description": "CasePrinted handleEvidence CREATE CLAIM CANCEL",
+  "description": "CasePrinted solicitors manual CREATE CLAIM CANCEL",
   "enabled": true,
   "jurisdiction": "PROBATE",
   "caseType": "GrantOfRepresentation",
@@ -94,7 +94,7 @@
       "request": {
         "type": "CLAIM",
         "credentials": {
-          "key": "caseworker",
+          "key": "team-leader",
           "granularPermission": true
         }
       },
@@ -111,7 +111,7 @@
             "replacements": {
               "tasks": [
                 {
-                  "task_state": "assigned",
+                  "task_state": "unassigned",
                   "task_system": "SELF",
                   "test_meta_data": [
                     {
@@ -135,7 +135,7 @@
       "request": {
         "type": "CANCEL",
         "credentials": {
-          "key": "caseworker",
+          "key": "team-leader",
           "granularPermission": true
         }
       },

@@ -29,7 +29,7 @@ public class TaskManagementService {
     private static final String CLAIM_ENDPOINT_PATH = "/task/{task-id}/claim";
     private static final String ASSIGN_ENDPOINT_PATH = "/task/{task-id}/assign";
     private static final String COMPLETE_ENDPOINT_PATH = "/task/{task-id}/complete";
-    private static final String CANCEL_ENDPOINT_PATH = "task/{task-id}/cancel";
+    private static final String CANCEL_ENDPOINT_PATH = "/task/{task-id}/cancel";
 
     @Autowired
     protected AuthorizationHeadersProvider authorizationHeadersProvider;
