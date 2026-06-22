@@ -376,6 +376,9 @@ public class ScenarioRunnerTest extends SpringBootFunctionalBaseTest {
             case COMPLETE:
                 taskFacade.completeTask(scenario, requestAuthorizationHeaders, userInfo);
                 break;
+            case CANCEL:
+                taskFacade.cancelTask(scenario, requestAuthorizationHeaders, userInfo);
+                break;
             default:
                 throw new Exception("Invalid request type [" + requestType + "]");
         }

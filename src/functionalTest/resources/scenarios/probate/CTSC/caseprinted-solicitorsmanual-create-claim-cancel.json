@@ -1,5 +1,5 @@
 {
-  "description": "probate create ExamineDigitalCaseProbate WITHDRAW task and CANCEL task",
+  "description": "CasePrinted handleEvidence CREATE CLAIM CANCEL",
   "enabled": true,
   "jurisdiction": "PROBATE",
   "caseType": "GrantOfRepresentation",
@@ -32,14 +32,6 @@
             "destination": "RestEndpoint",
             "template": "minimal-ccd-event-message-probate.json",
             "replacements": {
-              "EventId": "boWithdrawApplicationForCasePrinted",
-              "NewStateId": "BOCaseClosed",
-              "AdditionalData": {
-                "Data": {
-                  "evidenceHandled": "No",
-                  "caseType": "gop"
-                }
-              }
             }
           }
         ]
@@ -51,13 +43,13 @@
           "key": "CTSC-Administrator"
         },
         "status": 200,
-        "numberOfTasksAvailable": 0,
+        "numberOfTasksAvailable": 1,
         "taskData": {
           "template": "minimal-task-response-probate.json",
           "replacements": {
             "tasks": [
               {
-                "task_state": "assigned",
+                "task_state": "unassigned",
                 "task_system": "SELF",
                 "test_meta_data": [
                   {
@@ -83,13 +75,13 @@
                 "role_category": "CTSC",
                 "role_name": "ctsc",
                 "permissions": [ "Read", "Own", "Claim", "Unclaim", "Assign", "Unassign" ],
-                "authorisations": [ "SKILL:ABA6:ProbateExamining" ]
+                "authorisations": ["SKILL:ABA6:ProbateExamining"]
               },
               {
                 "role_category": "CTSC",
                 "role_name": "ctsc-team-leader",
                 "permissions": [ "Read", "Own", "Claim", "Unclaim", "Manage", "Complete", "Cancel", "Assign", "Unassign" ],
-                "authorisations": []
+                "authorisations": ["SKILL:ABA6:ProbateExamining"]
               }
             ]
           }
@@ -98,26 +90,65 @@
     ]
   },
   "tests": [
-  {
-    "request": {
-      "type": "",
-      "credentials": {
-        "key": "caseworker",
-        "granularPermission": true
-      }
-    },
-    "expectations": [
-      {
+    {
+      "request": {
+        "type": "CLAIM",
         "credentials": {
-          "key": "CTSC-Administrator",
+          "key": "caseworker",
           "granularPermission": true
-        },
-        "status": 200,
-        "numberOfTasksAvailable": 0,
-        "taskData": {
         }
-      }
-    ]
-  }
+      },
+      "expectations": [
+        {
+          "credentials": {
+            "key": "CTSC-Administrator",
+            "granularPermission": true
+          },
+          "status": 200,
+          "numberOfTasksAvailable": 1,
+          "taskData": {
+            "template": "minimal-task-response-probate.json",
+            "replacements": {
+              "tasks": [
+                {
+                  "task_state": "assigned",
+                  "task_system": "SELF",
+                  "test_meta_data": [
+                    {
+                      "key": "role_data_reference",
+                      "value": "ExamineDigitalCaseProbate"
+                    }
+                  ],
+                  "type": "ExamineDigitalCaseProbate",
+                  "name": "Examine Digital Case - Probate",
+                  "minor_priority": 500,
+                  "major_priority": 5000,
+                  "description": "[Amend Case Details](/cases/case-details/${[CASE_REFERENCE]}/trigger/boAmendCaseDetails)  [Issue Grant](/cases/case-details/${[CASE_REFERENCE]}/trigger/boIssueGrantForCaseMatching)  [Escalate to Registrar](/cases/case-details/${[CASE_REFERENCE]}/trigger/boEscalateToRegistrar)  [Select For QA](/cases/case-details/${[CASE_REFERENCE]}/trigger/boSelectForQA)  [SME Referral](/cases/case-details/${[CASE_REFERENCE]}/trigger/boUploadDocsForSMEReferral)  [Stop Case](/cases/case-details/${[CASE_REFERENCE]}/trigger/boStopCaseForCasePrinted)"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "request": {
+        "type": "CANCEL",
+        "credentials": {
+          "key": "caseworker",
+          "granularPermission": true
+        }
+      },
+      "expectations": [
+        {
+          "credentials": {
+            "key": "CTSC-Administrator",
+            "granularPermission": true
+          },
+          "status": 200,
+          "numberOfTasksAvailable": 0
+        }
+      ]
+    }
   ]
 }
