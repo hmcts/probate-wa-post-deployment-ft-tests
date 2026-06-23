@@ -37,7 +37,8 @@
               "AdditionalData": {
                 "Data": {
                   "evidenceHandled": false,
-                  "caseType": "gop"
+                  "caseType": "gop",
+                  "boHandoffReasonList": []
                 }
               }
             }
