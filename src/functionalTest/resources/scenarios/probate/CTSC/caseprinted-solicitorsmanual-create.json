@@ -2,7 +2,7 @@
   "description": "probate create ExamineDigitalCaseProbate task",
   "enabled": true,
   "jurisdiction": "PROBATE",
-  "caseType": "grantofrepresentation",
+  "caseType": "GrantOfRepresentation",
   "options": {
     "taskRetrievalApi": "task-management-api"
   },
