@@ -57,10 +57,6 @@ public class TaskOperationsFacade {
         taskManagementService.completeTask(scenario, authorizationHeaders, userInfo);
     }
 
-    public void cancelTask(TestScenario scenario, Headers authorizationHeaders, UserInfo userInfo){
-        taskManagementService.cancelTask(scenario, authorizationHeaders, userInfo);
-    }
-
     public void processRoleAssignment(Map<String, Object> postRoleAssignmentClauseValues, TestScenario scenario)
         throws IOException {
         Map<String, Object> postRoleAssignmentValues = scenario.getPostRoleAssignmentClauseValues();

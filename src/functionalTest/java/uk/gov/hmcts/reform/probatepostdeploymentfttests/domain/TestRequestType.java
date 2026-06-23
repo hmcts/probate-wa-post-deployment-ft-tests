@@ -1,5 +1,5 @@
 package uk.gov.hmcts.reform.probatepostdeploymentfttests.domain;
 
 public enum TestRequestType {
-    MESSAGE, CLAIM, ASSIGN, COMPLETE, CANCEL
+    MESSAGE, CLAIM, ASSIGN, COMPLETE
 }

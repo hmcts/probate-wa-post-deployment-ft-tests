@@ -1,5 +1,5 @@
 {
-  "description": "CasePrinted solicitors manual CREATE CLAIM CANCEL",
+  "description": "CasePrinted solicitors manual CREATE CLAIM WITHDRAW",
   "enabled": true,
   "jurisdiction": "PROBATE",
   "caseType": "GrantOfRepresentation",
@@ -111,7 +111,7 @@
             "replacements": {
               "tasks": [
                 {
-                  "task_state": "unassigned",
+                  "task_state": "assigned",
                   "task_system": "SELF",
                   "test_meta_data": [
                     {
@@ -133,10 +133,22 @@
     },
     {
       "request": {
-        "type": "CANCEL",
         "credentials": {
           "key": "team-leader",
           "granularPermission": true
+        },
+        "input": {
+          "eventMessages": [
+            {
+              "destination": "RestEndpoint",
+              "template": "minimal-ccd-event-message-probate.json",
+              "replacements": {
+                "EventId": "boWithdrawApplicationForCasePrinted",
+                "ToState": "BOCaseClosed",
+                "action": "Cancel"
+              }
+            }
+          ]
         }
       },
       "expectations": [
@@ -146,7 +158,29 @@
             "granularPermission": true
           },
           "status": 200,
-          "numberOfTasksAvailable": 0
+          "numberOfTasksAvailable": 0,
+          "taskData": {
+            "template": "minimal-task-response-probate.json",
+            "replacements": {
+              "tasks": [
+                {
+                  "task_state": "unassigned",
+                  "task_system": "SELF",
+                  "test_meta_data": [
+                    {
+                      "key": "role_data_reference",
+                      "value": "ExamineDigitalCaseProbate"
+                    }
+                  ],
+                  "type": "ExamineDigitalCaseProbate",
+                  "name": "Examine Digital Case - Probate",
+                  "minor_priority": 500,
+                  "major_priority": 5000,
+                  "description": "[Amend Case Details](/cases/case-details/${[CASE_REFERENCE]}/trigger/boAmendCaseDetails)  [Issue Grant](/cases/case-details/${[CASE_REFERENCE]}/trigger/boIssueGrantForCaseMatching)  [Escalate to Registrar](/cases/case-details/${[CASE_REFERENCE]}/trigger/boEscalateToRegistrar)  [Select For QA](/cases/case-details/${[CASE_REFERENCE]}/trigger/boSelectForQA)  [SME Referral](/cases/case-details/${[CASE_REFERENCE]}/trigger/boUploadDocsForSMEReferral)  [Stop Case](/cases/case-details/${[CASE_REFERENCE]}/trigger/boStopCaseForCasePrinted)"
+                }
+              ]
+            }
+          }
         }
       ]
     }

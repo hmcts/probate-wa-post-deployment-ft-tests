@@ -29,7 +29,6 @@ public class TaskManagementService {
     private static final String CLAIM_ENDPOINT_PATH = "/task/{task-id}/claim";
     private static final String ASSIGN_ENDPOINT_PATH = "/task/{task-id}/assign";
     private static final String COMPLETE_ENDPOINT_PATH = "/task/{task-id}/complete";
-    private static final String CANCEL_ENDPOINT_PATH = "/task/{task-id}/cancel";
 
     @Autowired
     protected AuthorizationHeadersProvider authorizationHeadersProvider;
@@ -188,24 +187,4 @@ public class TaskManagementService {
             });
         }
     }
-
-    public void cancelTask(TestScenario scenario, Headers authorizationHeaders, UserInfo userInfo){
-        if (scenario.getTaskIds().isEmpty()) {
-            log.error("Task id list for cancel is empty. Test will now fail");
-        } else {
-            scenario.getTaskIds().forEach(taskId -> {
-                Response result = given()
-                    .headers(authorizationHeaders)
-                    .contentType(MediaType.APPLICATION_JSON_VALUE)
-                    .when()
-                    .post(taskManagementUrl + CANCEL_ENDPOINT_PATH, taskId);
-
-                result.then().assertThat()
-                    .statusCode(HttpStatus.NO_CONTENT.value());
-                log.info("Cancel task request, task id: {}, requester id: {}, response code: {}",
-                         taskId, userInfo.getUid(), result.getStatusCode());
-            });
-        }
-    }
-
 }
