@@ -80,8 +80,8 @@ public class TestScenario {
     }
 
     public List<Map<String, Object>> getTestClauseValues() {
-    return testClauseValues;
-}
+        return testClauseValues;
+    }
 
     public String getJurisdiction() {
         return jurisdiction;
