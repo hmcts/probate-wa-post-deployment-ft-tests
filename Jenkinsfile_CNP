@@ -62,7 +62,7 @@ withNightlyPipeline(type, product, component) {
   }
 
   onPR {
-    def PROBATE_WA_PR = "3901"
+    def PROBATE_WA_PR = "3908"
 
     env.WA_POST_DEPLOYMENT_TEST_ENVIRONMENT="preview"
     env.CCD_URL="https://ccd-data-store-api-probate-back-office-pr-${PROBATE_WA_PR}.preview.platform.hmcts.net"
