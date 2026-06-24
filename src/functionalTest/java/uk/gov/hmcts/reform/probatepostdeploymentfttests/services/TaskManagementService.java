@@ -32,7 +32,6 @@ public class TaskManagementService {
 
     @Autowired
     protected AuthorizationHeadersProvider authorizationHeadersProvider;
-
     @Autowired
     private MapValueExpander mapValueExpander;
     @Autowired
@@ -188,5 +187,4 @@ public class TaskManagementService {
             });
         }
     }
-
 }
