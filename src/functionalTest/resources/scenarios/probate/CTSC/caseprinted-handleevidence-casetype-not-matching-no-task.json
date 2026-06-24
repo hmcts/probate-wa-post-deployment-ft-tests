@@ -1,5 +1,5 @@
 {
-  "description": "CasePrinted handleEvidence caseType not matching no task",
+  "description": "CasePrinted handleEvidence caseType not matching NO task",
   "enabled": true,
   "jurisdiction": "PROBATE",
   "caseType": "GrantOfRepresentation",

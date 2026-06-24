@@ -1,5 +1,5 @@
 {
-  "description": "CasePrinted handleEvidence evidenceHandled true NO task",
+  "description": "CasePrinted otherEventId NO task",
   "enabled": true,
   "jurisdiction": "PROBATE",
   "caseType": "GrantOfRepresentation",
@@ -33,11 +33,11 @@
             "destination": "RestEndpoint",
             "template": "minimal-ccd-event-message-probate.json",
             "replacements": {
-              "EventId": "handleEvidence",
+              "EventId": "otherEventId",
               "NewStateId": "CasePrinted",
               "AdditionalData": {
                 "Data": {
-                  "evidenceHandled": true,
+                  "evidenceHandled": false,
                   "caseType": "gop",
                   "boHandoffReasonList": []
                 }
