@@ -16,6 +16,9 @@
         "caseData": {
           "template": "minimal-probate.json",
           "replacements": {
+            "evidenceHandled": false,
+            "caseType": "gop",
+            "boHandoffReasonList": []
           }
         }
       }
@@ -115,6 +118,7 @@
                 {
                   "task_state": "assigned",
                   "task_system": "SELF",
+                  "assignee": "{$ASSIGNEE_ID}",
                   "test_meta_data": [
                     {
                       "key": "role_data_reference",
