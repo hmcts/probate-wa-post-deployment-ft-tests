@@ -64,6 +64,8 @@ public class ScenarioSources {
             scenarioPattern = "*" + scenarioPattern + "*.json";
         }
 
+        scenarioPattern = "caseprinted-attachScannedDocs-create.json";
+
         Collection<String> scenarioSources;
         try {
             scenarioSources = StringResourceLoader
