@@ -64,9 +64,6 @@ public class ScenarioSources {
             scenarioPattern = "*" + scenarioPattern + "*.json";
         }
 
-        scenarioPattern = "caseprinted-amendcasedetails-create.json";
-        //scenarioPattern = "caseprinted-handleevidence-claim-complete.json";
-
         Collection<String> scenarioSources;
         try {
             scenarioSources = StringResourceLoader
