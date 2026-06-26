@@ -1,5 +1,5 @@
 {
-  "description": "CasePrinted handleEvidence CLAIM COMPLETE",
+  "description": "CasePrinted boAmendCaseDetailsForAwaitingDocumentation CLAIM COMPLETE",
   "enabled": true,
   "jurisdiction": "PROBATE",
   "caseType": "GrantOfRepresentation",
