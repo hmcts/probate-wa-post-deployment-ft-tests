@@ -44,5 +44,7 @@
     "AddressLine2": "",
     "AddressLine3": ""
   },
-  "applicationType": "Personal"
+  "applicationType": "Personal",
+  "boHandoffReasonList": [],
+  "evidenceHandled": "NO"
 }

@@ -64,7 +64,13 @@ public class ScenarioSources {
             scenarioPattern = "*" + scenarioPattern + "*.json";
         }
 
-        scenarioPattern = "caseprinted-attachScannedDocs-create.json";
+//        scenarioPattern = "caseprinted-attachScannedDocs-create-claim.json";
+//        scenarioPattern = "caseprinted-attachScannedDocs-casetype-not-matching-no-task.json";
+//        scenarioPattern = "caseprinted-attachScannedDocs-evidencehandled-true-no-task.json";
+//        scenarioPattern = "caseprinted-attachScannedDocs-handoff-populated-no-task.json";
+//        scenarioPattern = "caseprinted-handleevidence-claim-complete.json";
+//         scenarioPattern = "caseprinted-solicitorsmanual-create-claim-withdraw.json";
+//         scenarioPattern = "caseprinted-handleevidence-create.json";
 
         Collection<String> scenarioSources;
         try {

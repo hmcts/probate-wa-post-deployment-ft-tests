@@ -1,5 +1,5 @@
 {
-  "description": "probate create ExamineDigitalCaseProbate task",
+  "description": "CasePrinted attachScannedDocs caseType not matching NO task",
   "enabled": true,
   "jurisdiction": "PROBATE",
   "caseType": "GrantOfRepresentation",
@@ -24,41 +24,28 @@
   "tests": [
     {
       "request": {
+        "type": "CLAIM",
         "credentials": {
-          "key": "caseworker"
-        },
-        "input": {
-          "eventMessages": [
-            {
-              "destination": "RestEndpoint",
-              "template": "minimal-ccd-event-message-probate.json",
-              "replacements": {
-                "EventId": "attachScannedDocs",
-                "NewStateId": "CasePrinted",
-                "AdditionalData": {
-                  "Data": {
-                    "evidenceHandled": false,
-                    "caseType": "gop",
-                    "boHandoffReasonList": []
-                  }
-                }
-              }
-            }
-          ]
+          "key": "team-leader",
+          "granularPermission": true
         }
       },
       "expectations": [
         {
           "credentials": {
-            "key": "CTSC-Administrator"
+            "key": "CTSC-Administrator",
+            "granularPermission": true
           },
           "status": 200,
-          "numberOfTasksAvailable": 1,
+          "numberOfTasksAvailable": 0,
           "taskData": {
             "template": "minimal-task-response-probate.json",
             "replacements": {
               "tasks": [
                 {
+                  "task_state": "assigned",
+                  "task_system": "SELF",
+                  "assignee": "{$ASSIGNEE_ID}",
                   "test_meta_data": [
                     {
                       "key": "role_data_reference",
@@ -73,27 +60,42 @@
                 }
               ]
             }
-          },
-          "roleData": [
+          }
+        }
+      ]
+    },
+    {
+      "request": {
+        "credentials": {
+          "key": "caseworker"
+        },
+        "input": {
+          "eventMessages": [
             {
-              "key": "ExamineDigitalCaseProbate",
-              "numberOfRolesAvailable": 2,
-              "roles": [
-                {
-                  "role_category": "CTSC",
-                  "role_name": "ctsc",
-                  "permissions": [ "Read", "Own", "Claim", "Unclaim", "Assign", "Unassign" ],
-                  "authorisations": [ "SKILL:ABA6:ProbateExamining" ]
-                },
-                {
-                  "role_category": "CTSC",
-                  "role_name": "ctsc-team-leader",
-                  "permissions": [ "Read", "Own", "Claim", "Unclaim", "Manage", "Complete", "Cancel", "Assign", "Unassign" ],
-                  "authorisations": [ "SKILL:ABA6:ProbateExamining" ]
+              "destination": "RestEndpoint",
+              "template": "minimal-ccd-event-message-probate.json",
+              "replacements": {
+                "EventId": "attachScannedDocs",
+                "NewStateId": "CasePrinted",
+                "AdditionalData": {
+                  "Data": {
+                    "evidenceHandled": false,
+                    "caseType": "someThing",
+                    "boHandoffReasonList": []
+                  }
                 }
-              ]
+              }
             }
           ]
+        }
+      },
+      "expectations": [
+        {
+          "credentials": {
+            "key": "CTSC-Administrator"
+          },
+          "status": 200,
+          "numberOfTasksAvailable": 0
         }
       ]
     }
