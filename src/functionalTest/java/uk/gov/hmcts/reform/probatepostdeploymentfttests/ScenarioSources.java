@@ -71,6 +71,7 @@ public class ScenarioSources {
 //        scenarioPattern = "caseprinted-handleevidence-claim-complete.json";
 //         scenarioPattern = "caseprinted-solicitorsmanual-create-claim-withdraw.json";
 //         scenarioPattern = "caseprinted-handleevidence-create.json";
+         scenarioPattern = "caseprinted-resolvestop-create-claim-complete.json";
 
         Collection<String> scenarioSources;
         try {
