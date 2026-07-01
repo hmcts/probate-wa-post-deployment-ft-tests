@@ -57,6 +57,7 @@
                     "value": "ExamineDigitalCaseProbate"
                   }
                 ],
+                "due_date": "{$VERIFIER-ZONED_DATETIME_TODAY+10_WORKING_DAYS}",
                 "type": "ExamineDigitalCaseProbate",
                 "name": "Examine Digital Case - Probate",
                 "minor_priority": 500,
