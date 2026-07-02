@@ -64,18 +64,6 @@ public class ScenarioSources {
             scenarioPattern = "*" + scenarioPattern + "*.json";
         }
 
-//        scenarioPattern = "caseprinted-attachScannedDocs-create-claim.json";
-//        scenarioPattern = "caseprinted-attachScannedDocs-casetype-not-matching-no-task.json";
-//        scenarioPattern = "caseprinted-attachScannedDocs-evidencehandled-true-no-task.json";
-//        scenarioPattern = "caseprinted-attachScannedDocs-handoff-populated-no-task.json";
-//        scenarioPattern = "caseprinted-handleevidence-claim-complete.json";
-//         scenarioPattern = "caseprinted-solicitorsmanual-create-claim-withdraw.json";
-//         scenarioPattern = "caseprinted-handleevidence-create.json";
-//        scenarioPattern = "caseprinted-solicitorsmanual-create-claim-withdraw.json";
-//        scenarioPattern = "caseprinted-solicitorsmanual-casetype-not-matching.json";
-//        scenarioPattern = "caseprinted-solicitorsmanual-evidencehandled-true-no-task.json";
-//        scenarioPattern = "caseprinted-solicitorsmanual-handoff-populated-no-task.json";
-
         Collection<String> scenarioSources;
         try {
             scenarioSources = StringResourceLoader
