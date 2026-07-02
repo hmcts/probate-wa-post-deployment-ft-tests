@@ -23,39 +23,39 @@
   },
   "tests": [
     {
-    "request": {
-      "credentials": {
-        "key": "caseworker"
-      },
-      "input": {
-        "eventMessages": [
-          {
-            "destination": "RestEndpoint",
-            "template": "minimal-ccd-event-message-probate.json",
-            "replacements": {
-              "EventId": "handleEvidence",
-              "NewStateId": "CasePrinted",
-              "AdditionalData": {
-                "Data": {
-                  "evidenceHandled": false,
-                  "caseType": "gop",
-                  "boHandoffReasonList": ["someThing"]
+      "request": {
+        "credentials": {
+          "key": "caseworker"
+        },
+        "input": {
+          "eventMessages": [
+            {
+              "destination": "RestEndpoint",
+              "template": "minimal-ccd-event-message-probate.json",
+              "replacements": {
+                "EventId": "handleEvidence",
+                "NewStateId": "CasePrinted",
+                "AdditionalData": {
+                  "Data": {
+                    "evidenceHandled": false,
+                    "caseType": "gop",
+                    "boHandoffReasonList": ["someThing"]
+                  }
                 }
               }
             }
-          }
-        ]
-      }
-    },
-    "expectations": [
-      {
-        "credentials": {
-          "key": "CTSC-Administrator"
-        },
-        "status": 200,
-        "numberOfTasksAvailable": 0
-      }
-    ]
+          ]
+        }
+      },
+      "expectations": [
+        {
+          "credentials": {
+            "key": "CTSC-Administrator"
+          },
+          "status": 200,
+          "numberOfTasksAvailable": 0
+        }
+      ]
     }
   ]
 }
