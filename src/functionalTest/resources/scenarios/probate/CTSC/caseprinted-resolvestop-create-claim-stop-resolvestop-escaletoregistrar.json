@@ -1,5 +1,5 @@
 {
-  "description": "CasePrinted resolve stop CREATE CLAIM COMPLETE RESOLVE",
+  "description": "CasePrinted resolve stop CREATE, CLAIM, STOP, RESOLVE STOP then ESCALATE TO REGISTRAR",
   "enabled": true,
   "jurisdiction": "PROBATE",
   "caseType": "GrantOfRepresentation",
@@ -22,6 +22,21 @@
     ]
   },
   "before": {
+    "request": {
+      "credentials": {
+        "key": "caseworker"
+      },
+      "input": {
+        "eventMessages": [
+          {
+            "destination": "RestEndpoint",
+            "template": "minimal-ccd-event-message-probate.json",
+            "replacements": {
+            }
+          }
+        ]
+      }
+    },
     "expectations": [
       {
         "credentials": {
@@ -120,21 +135,10 @@
     },
     {
       "request": {
+        "type": "COMPLETE",
         "credentials": {
           "key": "team-leader",
           "granularPermission": true
-        },
-        "input": {
-          "eventMessages": [
-            {
-              "destination": "RestEndpoint",
-              "template": "minimal-ccd-event-message-probate.json",
-              "replacements": {
-                "EventId": "boResolveStop",
-                "NewStateId": "BOCaseStopped"
-              }
-            }
-          ]
         }
       },
       "expectations": [
@@ -150,6 +154,7 @@
     },
     {
       "request": {
+        "type": "MESSAGE",
         "credentials": {
           "key": "team-leader",
           "granularPermission": true
@@ -162,11 +167,21 @@
               "replacements": {
                 "EventId": "boResolveStop",
                 "NewStateId": "CasePrinted",
+                "PreviousStateId": "BOCaseStopped",
                 "AdditionalData": {
                   "Data": {
                     "evidenceHandled": false,
                     "caseType": "gop",
-                    "boHandoffReasonList": []
+                    "boHandoffReasonList": [],
+                    "boCaseStopReasonList": [
+                      {
+                        "id": "01ffa9bd-d839-4c13-acc1-a12bad25efbc",
+                        "value": {
+                          "caseStopReason": "DocumentsRequired",
+                          "caseStopSubReasonDocRequired": "PA1P"
+                        }
+                      }
+                    ]
                   }
                 }
               }
@@ -187,9 +202,8 @@
             "replacements": {
               "tasks": [
                 {
-                  "task_state": "assigned",
+                  "task_state": "unassigned",
                   "task_system": "SELF",
-                  "assignee": "{$ASSIGNEE_ID}",
                   "test_meta_data": [
                     {
                       "key": "role_data_reference",
@@ -211,21 +225,10 @@
     },
     {
       "request": {
+        "type": "COMPLETE",
         "credentials": {
           "key": "team-leader",
           "granularPermission": true
-        },
-        "input": {
-          "eventMessages": [
-            {
-              "destination": "RestEndpoint",
-              "template": "minimal-ccd-event-message-probate.json",
-              "replacements": {
-                "EventId": "boResolveStop",
-                "NewStateId": "BOCaseStopped"
-              }
-            }
-          ]
         }
       },
       "expectations": [
