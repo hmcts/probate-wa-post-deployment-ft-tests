@@ -1,5 +1,5 @@
 {
-  "description": "BOReadyToIssue handleEvidence DeBonisNon - Create",
+  "description": "BOReadyToIssue changeState DeBonisNon - Create",
   "enabled": true,
   "jurisdiction": "PROBATE",
   "caseType": "GrantOfRepresentation",
@@ -33,7 +33,7 @@
             "destination": "RestEndpoint",
             "template": "minimal-ccd-event-message-probate.json",
             "replacements": {
-              "EventId": "handleEvidence",
+              "EventId": "changeState",
               "NewStateId": "BOReadyToIssue",
               "AdditionalData": {
                 "Data": {
