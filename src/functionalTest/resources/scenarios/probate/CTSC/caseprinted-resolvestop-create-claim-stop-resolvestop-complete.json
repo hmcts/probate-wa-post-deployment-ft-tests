@@ -1,5 +1,5 @@
 {
-  "description": "CasePrinted resolve stop CREATE, CLAIM, STOP, RESOLVE STOP then ESCALATE TO REGISTRAR",
+  "description": "CasePrinted resolve stop CREATE, CLAIM, STOP, RESOLVE STOP then COMPLETE",
   "enabled": true,
   "jurisdiction": "PROBATE",
   "caseType": "GrantOfRepresentation",
