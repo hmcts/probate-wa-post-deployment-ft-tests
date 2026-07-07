@@ -1,5 +1,5 @@
 {
-  "description": "CasePrinted change state CREATE CLAIM",
+  "description": "CasePrinted change state CREATE CLAIM COMPLETE then change state to CasePrinted",
   "enabled": true,
   "jurisdiction": "PROBATE",
   "caseType": "GrantOfRepresentation",
@@ -25,7 +25,7 @@
     "request": {
       "type": "MESSAGE",
       "credentials": {
-        "key": "caseworker"
+        "key": "team-leader"
       },
       "input": {
         "eventMessages": [
@@ -138,7 +138,25 @@
     },
     {
       "request": {
-        "type": "MESSAGE",
+        "type": "COMPLETE",
+        "credentials": {
+          "key": "team-leader",
+          "granularPermission": true
+        }
+      },
+      "expectations": [
+        {
+          "credentials": {
+            "key": "CTSC-Administrator",
+            "granularPermission": true
+          },
+          "status": 200,
+          "numberOfTasksAvailable": 0
+        }
+      ]
+    },
+    {
+      "request": {
         "credentials": {
           "key": "team-leader",
           "granularPermission": true
@@ -170,7 +188,7 @@
             "granularPermission": true
           },
           "status": 200,
-          "numberOfTasksAvailable": 2,
+          "numberOfTasksAvailable": 1,
           "taskData": {
             "template": "minimal-task-response-probate.json",
             "replacements": {
@@ -178,23 +196,6 @@
                 {
                   "task_state": "unassigned",
                   "task_system": "SELF",
-                  "test_meta_data": [
-                    {
-                      "key": "role_data_reference",
-                      "value": "ExamineDigitalCaseProbate"
-                    }
-                  ],
-                  "type": "ExamineDigitalCaseProbate",
-                  "name": "Examine Digital Case - Probate",
-                  "minor_priority": 500,
-                  "major_priority": 5000,
-                  "due_date": "{$VERIFIER-ZONED_DATETIME_TODAY+10_WORKING_DAYS}",
-                  "description": "[Amend Case Details](/cases/case-details/${[CASE_REFERENCE]}/trigger/boAmendCaseDetails)  [Issue Grant](/cases/case-details/${[CASE_REFERENCE]}/trigger/boIssueGrantForCaseMatching)  [Escalate to Registrar](/cases/case-details/${[CASE_REFERENCE]}/trigger/boEscalateToRegistrar)  [Select For QA](/cases/case-details/${[CASE_REFERENCE]}/trigger/boSelectForQA)  [SME Referral](/cases/case-details/${[CASE_REFERENCE]}/trigger/boUploadDocsForSMEReferral)  [Stop Case](/cases/case-details/${[CASE_REFERENCE]}/trigger/boStopCaseForCasePrinted)"
-                },
-                {
-                  "task_state": "assigned",
-                  "task_system": "SELF",
-                  "assignee": "{$ASSIGNEE_ID}",
                   "test_meta_data": [
                     {
                       "key": "role_data_reference",
