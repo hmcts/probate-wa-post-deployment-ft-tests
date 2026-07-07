@@ -64,7 +64,7 @@ public class ScenarioSources {
             scenarioPattern = "*" + scenarioPattern + "*.json";
         }
 
-
+        scenarioPattern = "caseprinted-create-claim-complete-resolvesmereferral.json";
 
         Collection<String> scenarioSources;
         try {
