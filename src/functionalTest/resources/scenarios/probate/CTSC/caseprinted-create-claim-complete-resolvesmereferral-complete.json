@@ -1,5 +1,5 @@
 {
-  "description": "CasePrinted resolve sme referral CREATE CLAIM Refer to SME",
+  "description": "Create Case, Refer for SME, CLAIM task, COMPLETE task, Resolve SME Referral and COMPLETE task",
   "enabled": true,
   "jurisdiction": "PROBATE",
   "caseType": "GrantOfRepresentation",
@@ -24,7 +24,8 @@
   "before": {
     "request": {
       "credentials": {
-        "key": "caseworker"
+        "key": "team-leader",
+        "granularPermission": true
       },
       "input": {
         "eventMessages": [
@@ -32,6 +33,8 @@
             "destination": "RestEndpoint",
             "template": "minimal-ccd-event-message-probate.json",
             "replacements": {
+              "EventId": "changeState",
+              "NewStateId": "BOCaseWorkerEscalation"
             }
           }
         ]
@@ -61,6 +64,7 @@
                 "name": "Examine Digital Case - Probate",
                 "minor_priority": 500,
                 "major_priority": 5000,
+                "due_date": "{$VERIFIER-ZONED_DATETIME_TODAY+10_WORKING_DAYS}",
                 "description": "[Amend Case Details](/cases/case-details/${[CASE_REFERENCE]}/trigger/boAmendCaseDetails)  [Issue Grant](/cases/case-details/${[CASE_REFERENCE]}/trigger/boIssueGrantForCaseMatching)  [Escalate to Registrar](/cases/case-details/${[CASE_REFERENCE]}/trigger/boEscalateToRegistrar)  [Select For QA](/cases/case-details/${[CASE_REFERENCE]}/trigger/boSelectForQA)  [SME Referral](/cases/case-details/${[CASE_REFERENCE]}/trigger/boUploadDocsForSMEReferral)  [Stop Case](/cases/case-details/${[CASE_REFERENCE]}/trigger/boStopCaseForCasePrinted)"
               }
             ]
@@ -153,37 +157,6 @@
       ]
     },
     {
-    "request": {
-      "type": "MESSAGE",
-      "credentials": {
-        "key": "team-leader",
-        "granularPermission": true
-      },
-      "input": {
-        "eventMessages": [
-          {
-            "destination": "RestEndpoint",
-            "template": "minimal-ccd-event-message-probate.json",
-            "replacements": {
-              "EventId": "boAddCommentForCWEscalation",
-              "NewStateId": "BOCaseWorkerEscalation"
-            }
-          }
-        ]
-      }
-    },
-      "expectations": [
-        {
-          "credentials": {
-            "key": "CTSC-Administrator",
-            "granularPermission": true
-          },
-          "status": 200,
-          "numberOfTasksAvailable": 0
-        }
-      ]
-    },
-    {
       "request": {
         "type": "MESSAGE",
         "credentials": {
@@ -241,6 +214,25 @@
               ]
             }
           }
+        }
+      ]
+    },
+    {
+      "request": {
+        "type": "COMPLETE",
+        "credentials": {
+          "key": "team-leader",
+          "granularPermission": true
+        }
+      },
+      "expectations": [
+        {
+          "credentials": {
+            "key": "CTSC-Administrator",
+            "granularPermission": true
+          },
+          "status": 200,
+          "numberOfTasksAvailable": 0
         }
       ]
     }
