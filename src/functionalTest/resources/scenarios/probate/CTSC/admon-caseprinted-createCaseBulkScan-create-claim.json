@@ -1,5 +1,5 @@
 {
-  "description": "CasePrinted createCaseFromBulkScan CREATE CLAIM WITHDRAW",
+  "description": "Create case for admon will caseType with event createCaseFromBulkScan and CLAIM task",
   "enabled": true,
   "jurisdiction": "PROBATE",
   "caseType": "GrantOfRepresentation",
@@ -55,12 +55,12 @@
                 "test_meta_data": [
                   {
                     "key": "role_data_reference",
-                    "value": "ExamineDigitalCaseProbate"
+                    "value": "ExamineDigitalCaseAdmonWill"
                   }
                 ],
                 "due_date": "{$VERIFIER-ZONED_DATETIME_TODAY+10_WORKING_DAYS}",
-                "type": "ExamineDigitalCaseProbate",
-                "name": "Examine Digital Case - Probate",
+                "type": "ExamineDigitalCaseAdmonWill",
+                "name": "Examine Digital Case - Admon",
                 "minor_priority": 500,
                 "major_priority": 5000,
                 "description": "[Amend Case Details](/cases/case-details/${[CASE_REFERENCE]}/trigger/boAmendCaseDetails)  [Issue Grant](/cases/case-details/${[CASE_REFERENCE]}/trigger/boIssueGrantForCaseMatching)  [Escalate to Registrar](/cases/case-details/${[CASE_REFERENCE]}/trigger/boEscalateToRegistrar)  [Select For QA](/cases/case-details/${[CASE_REFERENCE]}/trigger/boSelectForQA)  [SME Referral](/cases/case-details/${[CASE_REFERENCE]}/trigger/boUploadDocsForSMEReferral)  [Stop Case](/cases/case-details/${[CASE_REFERENCE]}/trigger/boStopCaseForCasePrinted)"
@@ -70,20 +70,20 @@
         },
         "roleData": [
           {
-            "key": "ExamineDigitalCaseProbate",
+            "key": "ExamineDigitalCaseAdmonWill",
             "numberOfRolesAvailable": 2,
             "roles": [
               {
                 "role_category": "CTSC",
                 "role_name": "ctsc",
                 "permissions": [ "Read", "Own", "Claim", "Unclaim", "Assign", "Unassign" ],
-                "authorisations": ["SKILL:ABA6:ProbateExamining"]
+                "authorisations": ["SKILL:ABA6:AdmonExamining"]
               },
               {
                 "role_category": "CTSC",
                 "role_name": "ctsc-team-leader",
                 "permissions": [ "Read", "Own", "Claim", "Unclaim", "Manage", "Complete", "Cancel", "Assign", "Unassign" ],
-                "authorisations": ["SKILL:ABA6:ProbateExamining"]
+                "authorisations": ["SKILL:ABA6:AdmonExamining"]
               }
             ]
           }
@@ -119,11 +119,11 @@
                   "test_meta_data": [
                     {
                       "key": "role_data_reference",
-                      "value": "ExamineDigitalCaseProbate"
+                      "value": "ExamineDigitalCaseAdmonWill"
                     }
                   ],
-                  "type": "ExamineDigitalCaseProbate",
-                  "name": "Examine Digital Case - Probate",
+                  "type": "ExamineDigitalCaseAdmonWill",
+                  "name": "Examine Digital Case - Admon",
                   "minor_priority": 500,
                   "major_priority": 5000,
                   "due_date": "{$VERIFIER-ZONED_DATETIME_TODAY+10_WORKING_DAYS}",
