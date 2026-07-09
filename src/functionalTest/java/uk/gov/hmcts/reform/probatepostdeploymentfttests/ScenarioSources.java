@@ -64,8 +64,6 @@ public class ScenarioSources {
             scenarioPattern = "*" + scenarioPattern + "*.json";
         }
 
-        //scenarioPattern = "probate.json";
-
         Collection<String> scenarioSources;
         try {
             scenarioSources = StringResourceLoader
