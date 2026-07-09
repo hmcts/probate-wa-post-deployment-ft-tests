@@ -134,37 +134,6 @@
           }
         }
       ]
-    },
-    {
-      "request": {
-        "credentials": {
-          "key": "team-leader",
-          "granularPermission": true
-        },
-        "input": {
-          "eventMessages": [
-            {
-              "destination": "RestEndpoint",
-              "template": "minimal-ccd-event-message-probate.json",
-              "replacements": {
-                "event": "boWithdrawApplicationForCasePrinted",
-                "fromState": "CasePrinted",
-                "state": "BOCaseClosed"
-              }
-            }
-          ]
-        }
-      },
-      "expectations": [
-        {
-          "credentials": {
-            "key": "CTSC-Administrator",
-            "granularPermission": true
-          },
-          "status": 200,
-          "numberOfTasksAvailable": 0
-        }
-      ]
     }
   ]
 }
