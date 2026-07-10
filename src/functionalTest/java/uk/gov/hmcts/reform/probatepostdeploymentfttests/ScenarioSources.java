@@ -64,7 +64,6 @@ public class ScenarioSources {
             scenarioPattern = "*" + scenarioPattern + "*.json";
         }
 
-        scenarioPattern = "admon-caseprinted-solicitorsmanual-create-changestate-withdraw.json";
 
         Collection<String> scenarioSources;
         try {
