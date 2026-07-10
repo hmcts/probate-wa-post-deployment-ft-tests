@@ -24,6 +24,25 @@
   "tests": [
     {
       "request": {
+        "type": "COMPLETE",
+        "credentials": {
+          "key": "team-leader",
+          "granularPermission": true
+        }
+      },
+      "expectations": [
+        {
+          "credentials": {
+            "key": "CTSC-Administrator",
+            "granularPermission": true
+          },
+          "status": 200,
+          "numberOfTasksAvailable": 0
+        }
+      ]
+    },
+    {
+      "request": {
         "credentials": {
           "key": "caseworker"
         },
@@ -46,7 +65,7 @@
             }
           ]
         }
-      } ,
+      },
       "expectations": [
         {
           "credentials": {
