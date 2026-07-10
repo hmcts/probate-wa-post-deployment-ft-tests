@@ -1,5 +1,5 @@
 {
-  "description": "Case created with 1 task, assigned AND completed THEN handleEvidence with handoff populated creates NO task",
+  "description": "CasePrinted boAmendCaseDetailsForAwaitingDocumentation Create",
   "enabled": true,
   "jurisdiction": "PROBATE",
   "caseType": "GrantOfRepresentation",
@@ -21,7 +21,8 @@
       }
     ]
   },
-  "before": {
+  "tests": [
+    {
     "request": {
       "credentials": {
         "key": "caseworker"
@@ -32,6 +33,15 @@
             "destination": "RestEndpoint",
             "template": "minimal-ccd-event-message-probate.json",
             "replacements": {
+              "EventId": "boAmendCaseDetailsForAwaitingDocumentation",
+              "NewStateId": "CasePrinted",
+              "AdditionalData": {
+                "Data": {
+                  "evidenceHandled": false,
+                  "caseType": "gop",
+                  "boHandoffReasonList": []
+                }
+              }
             }
           }
         ]
@@ -49,15 +59,12 @@
           "replacements": {
             "tasks": [
               {
-                "task_state": "unassigned",
-                "task_system": "SELF",
                 "test_meta_data": [
                   {
                     "key": "role_data_reference",
                     "value": "ExamineDigitalCaseProbate"
                   }
                 ],
-                "due_date": "{$VERIFIER-ZONED_DATETIME_TODAY+10_WORKING_DAYS}",
                 "type": "ExamineDigitalCaseProbate",
                 "name": "Examine Digital Case - Probate",
                 "minor_priority": 500,
@@ -82,68 +89,13 @@
                 "role_category": "CTSC",
                 "role_name": "ctsc-team-leader",
                 "permissions": [ "Read", "Own", "Claim", "Unclaim", "Manage", "Complete", "Cancel", "Assign", "Unassign" ],
-                "authorisations": ["SKILL:ABA6:ProbateExamining"]
+                "authorisations": []
               }
             ]
           }
         ]
       }
     ]
-  },
-  "tests": [
-    {
-      "request": {
-        "type": "COMPLETE",
-        "credentials": {
-          "key": "team-leader",
-          "granularPermission": true
-        }
-      },
-      "expectations": [
-        {
-          "credentials": {
-            "key": "CTSC-Administrator",
-            "granularPermission": true
-          },
-          "status": 200,
-          "numberOfTasksAvailable": 0
-        }
-      ]
-    },
-    {
-      "request": {
-        "credentials": {
-          "key": "caseworker"
-        },
-        "input": {
-          "eventMessages": [
-            {
-              "destination": "RestEndpoint",
-              "template": "minimal-ccd-event-message-probate.json",
-              "replacements": {
-                "EventId": "handleEvidence",
-                "NewStateId": "CasePrinted",
-                "AdditionalData": {
-                  "Data": {
-                    "evidenceHandled": false,
-                    "caseType": "gop",
-                    "boHandoffReasonList": ["someThing"]
-                  }
-                }
-              }
-            }
-          ]
-        }
-      },
-      "expectations": [
-        {
-          "credentials": {
-            "key": "CTSC-Administrator"
-          },
-          "status": 200,
-          "numberOfTasksAvailable": 0
-        }
-      ]
     }
   ]
 }
