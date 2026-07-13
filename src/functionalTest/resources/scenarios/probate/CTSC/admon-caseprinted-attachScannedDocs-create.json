@@ -51,18 +51,8 @@
             "tasks": [
               {
                 "task_state": "unassigned",
-                "task_system": "SELF",
-                "test_meta_data": [
-                  {
-                    "key": "role_data_reference",
-                    "value": "ExamineDigitalCaseAdmonWill"
-                  }
-                ],
                 "type": "ExamineDigitalCaseAdmonWill",
-                "name": "Examine Digital Case - Admon",
-                "minor_priority": 500,
-                "major_priority": 5000,
-                "description": "[Amend Case Details](/cases/case-details/${[CASE_REFERENCE]}/trigger/boAmendCaseDetails)  [Issue Grant](/cases/case-details/${[CASE_REFERENCE]}/trigger/boIssueGrantForCaseMatching)  [Escalate to Registrar](/cases/case-details/${[CASE_REFERENCE]}/trigger/boEscalateToRegistrar)  [Select For QA](/cases/case-details/${[CASE_REFERENCE]}/trigger/boSelectForQA)  [SME Referral](/cases/case-details/${[CASE_REFERENCE]}/trigger/moveToCWEscalation)  [Stop Case](/cases/case-details/${[CASE_REFERENCE]}/trigger/boStopCaseForCasePrinted)"
+                "name": "Examine Digital Case - Admon"
               }
             ]
           }
@@ -104,25 +94,20 @@
             "granularPermission": true
           },
           "status": 200,
-          "numberOfTasksAvailable": 1,
+          "numberOfTasksAvailable": 2,
           "taskData": {
             "template": "minimal-task-response-probate.json",
             "replacements": {
               "tasks": [
                 {
                   "task_state": "unassigned",
-                  "task_system": "SELF",
-                  "test_meta_data": [
-                    {
-                      "key": "role_data_reference",
-                      "value": "ExamineDigitalCaseAdmonWill"
-                    }
-                  ],
                   "type": "ExamineDigitalCaseAdmonWill",
-                  "name": "Examine Digital Case - Admon",
-                  "minor_priority": 500,
-                  "major_priority": 5000,
-                  "description": "[Amend Case Details](/cases/case-details/${[CASE_REFERENCE]}/trigger/boAmendCaseDetails)  [Issue Grant](/cases/case-details/${[CASE_REFERENCE]}/trigger/boIssueGrantForCaseMatching)  [Escalate to Registrar](/cases/case-details/${[CASE_REFERENCE]}/trigger/boEscalateToRegistrar)  [Select For QA](/cases/case-details/${[CASE_REFERENCE]}/trigger/boSelectForQA)  [SME Referral](/cases/case-details/${[CASE_REFERENCE]}/trigger/moveToCWEscalation)  [Stop Case](/cases/case-details/${[CASE_REFERENCE]}/trigger/boStopCaseForCasePrinted)"
+                  "name": "Examine Digital Case - Admon"
+                },
+                {
+                  "task_state": "unassigned",
+                  "type": "ExamineDigitalCaseAdmonWill",
+                  "name": "Examine Digital Case - Admon"
                 }
               ]
             }
