@@ -23,39 +23,58 @@
   },
   "tests": [
     {
-    "request": {
-      "credentials": {
-        "key": "caseworker"
+      "request": {
+        "type": "COMPLETE",
+        "credentials": {
+          "key": "team-leader",
+          "granularPermission": true
+        }
       },
-      "input": {
-        "eventMessages": [
-          {
-            "destination": "RestEndpoint",
-            "template": "minimal-ccd-event-message-probate.json",
-            "replacements": {
-              "EventId": "handleEvidence",
-              "NewStateId": "CasePrinted",
-              "AdditionalData": {
-                "Data": {
-                  "evidenceHandled": true,
-                  "caseType": "gop",
-                  "boHandoffReasonList": []
+      "expectations": [
+        {
+          "credentials": {
+            "key": "CTSC-Administrator",
+            "granularPermission": true
+          },
+          "status": 200,
+          "numberOfTasksAvailable": 0
+        }
+      ]
+    },
+    {
+      "request": {
+        "credentials": {
+          "key": "caseworker"
+        },
+        "input": {
+          "eventMessages": [
+            {
+              "destination": "RestEndpoint",
+              "template": "minimal-ccd-event-message-probate.json",
+              "replacements": {
+                "EventId": "handleEvidence",
+                "NewStateId": "CasePrinted",
+                "AdditionalData": {
+                  "Data": {
+                    "evidenceHandled": true,
+                    "caseType": "gop",
+                    "boHandoffReasonList": []
+                  }
                 }
               }
             }
-          }
-        ]
-      }
-    },
-    "expectations": [
-      {
-        "credentials": {
-          "key": "CTSC-Administrator"
-        },
-        "status": 200,
-        "numberOfTasksAvailable": 0
-      }
-    ]
+          ]
+        }
+      },
+      "expectations": [
+        {
+          "credentials": {
+            "key": "CTSC-Administrator"
+          },
+          "status": 200,
+          "numberOfTasksAvailable": 0
+        }
+      ]
     }
   ]
 }
