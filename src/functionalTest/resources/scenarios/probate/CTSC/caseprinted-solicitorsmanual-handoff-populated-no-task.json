@@ -1,5 +1,5 @@
 {
-  "description": "CasePrinted handleEvidence caseType not matching NO task",
+  "description": "CasePrinted solicitors manual hand off reason populated TASK creation FAILS",
   "enabled": true,
   "jurisdiction": "PROBATE",
   "caseType": "GrantOfRepresentation",
@@ -14,7 +14,7 @@
       {
         "eventId": "applyforGrantPaperApplicationMan",
         "caseData": {
-          "template": "minimal-probate.json",
+          "template": "minimal-probate-with-handoff-reason.json",
           "replacements": {
           }
         }
@@ -22,25 +22,6 @@
     ]
   },
   "tests": [
-    {
-      "request": {
-        "type": "COMPLETE",
-        "credentials": {
-          "key": "team-leader",
-          "granularPermission": true
-        }
-      },
-      "expectations": [
-        {
-          "credentials": {
-            "key": "CTSC-Administrator",
-            "granularPermission": true
-          },
-          "status": 200,
-          "numberOfTasksAvailable": 0
-        }
-      ]
-    },
     {
       "request": {
         "credentials": {
@@ -52,15 +33,6 @@
               "destination": "RestEndpoint",
               "template": "minimal-ccd-event-message-probate.json",
               "replacements": {
-                "EventId": "handleEvidence",
-                "NewStateId": "CasePrinted",
-                "AdditionalData": {
-                  "Data": {
-                    "evidenceHandled": false,
-                    "caseType": "someThing",
-                    "boHandoffReasonList": []
-                  }
-                }
               }
             }
           ]

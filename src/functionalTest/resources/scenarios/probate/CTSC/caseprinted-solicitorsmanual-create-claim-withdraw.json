@@ -1,5 +1,5 @@
 {
-  "description": "CasePrinted handleEvidence CLAIM COMPLETE",
+  "description": "CasePrinted solicitors manual CREATE CLAIM WITHDRAW",
   "enabled": true,
   "jurisdiction": "PROBATE",
   "caseType": "GrantOfRepresentation",
@@ -32,15 +32,6 @@
             "destination": "RestEndpoint",
             "template": "minimal-ccd-event-message-probate.json",
             "replacements": {
-              "EventId": "handleEvidence",
-              "NewStateId": "CasePrinted",
-              "AdditionalData": {
-                "Data": {
-                  "evidenceHandled": false,
-                  "caseType": "gop",
-                  "boHandoffReasonList": []
-                }
-              }
             }
           }
         ]
@@ -52,7 +43,7 @@
           "key": "CTSC-Administrator"
         },
         "status": 200,
-        "numberOfTasksAvailable": 2,
+        "numberOfTasksAvailable": 1,
         "taskData": {
           "template": "minimal-task-response-probate.json",
           "replacements": {
@@ -66,27 +57,11 @@
                     "value": "ExamineDigitalCaseProbate"
                   }
                 ],
+                "due_date": "{$VERIFIER-ZONED_DATETIME_TODAY+10_WORKING_DAYS}",
                 "type": "ExamineDigitalCaseProbate",
                 "name": "Examine Digital Case - Probate",
                 "minor_priority": 500,
                 "major_priority": 5000,
-                "due_date": "{$VERIFIER-ZONED_DATETIME_TODAY+10_WORKING_DAYS}",
-                "description": "[Amend Case Details](/cases/case-details/${[CASE_REFERENCE]}/trigger/boAmendCaseDetails)  [Issue Grant](/cases/case-details/${[CASE_REFERENCE]}/trigger/boIssueGrantForCaseMatching)  [Escalate to Registrar](/cases/case-details/${[CASE_REFERENCE]}/trigger/boEscalateToRegistrar)  [Select For QA](/cases/case-details/${[CASE_REFERENCE]}/trigger/boSelectForQA)  [SME Referral](/cases/case-details/${[CASE_REFERENCE]}/trigger/moveToCWEscalation)  [Stop Case](/cases/case-details/${[CASE_REFERENCE]}/trigger/boStopCaseForCasePrinted)"
-              },
-              {
-                "task_state": "unassigned",
-                "task_system": "SELF",
-                "test_meta_data": [
-                  {
-                    "key": "role_data_reference",
-                    "value": "ExamineDigitalCaseProbate"
-                  }
-                ],
-                "type": "ExamineDigitalCaseProbate",
-                "name": "Examine Digital Case - Probate",
-                "minor_priority": 500,
-                "major_priority": 5000,
-                "due_date": "{$VERIFIER-ZONED_DATETIME_TODAY+10_WORKING_DAYS}",
                 "description": "[Amend Case Details](/cases/case-details/${[CASE_REFERENCE]}/trigger/boAmendCaseDetails)  [Issue Grant](/cases/case-details/${[CASE_REFERENCE]}/trigger/boIssueGrantForCaseMatching)  [Escalate to Registrar](/cases/case-details/${[CASE_REFERENCE]}/trigger/boEscalateToRegistrar)  [Select For QA](/cases/case-details/${[CASE_REFERENCE]}/trigger/boSelectForQA)  [SME Referral](/cases/case-details/${[CASE_REFERENCE]}/trigger/moveToCWEscalation)  [Stop Case](/cases/case-details/${[CASE_REFERENCE]}/trigger/boStopCaseForCasePrinted)"
               }
             ]
@@ -131,27 +106,11 @@
             "granularPermission": true
           },
           "status": 200,
-          "numberOfTasksAvailable": 2,
+          "numberOfTasksAvailable": 1,
           "taskData": {
             "template": "minimal-task-response-probate.json",
             "replacements": {
               "tasks": [
-                {
-                  "task_state": "assigned",
-                  "task_system": "SELF",
-                  "assignee": "{$ASSIGNEE_ID}",
-                  "test_meta_data": [
-                    {
-                      "key": "role_data_reference",
-                      "value": "ExamineDigitalCaseProbate"
-                    }
-                  ],
-                  "type": "ExamineDigitalCaseProbate",
-                  "name": "Examine Digital Case - Probate",
-                  "minor_priority": 500,
-                  "major_priority": 5000,
-                  "description": "[Amend Case Details](/cases/case-details/${[CASE_REFERENCE]}/trigger/boAmendCaseDetails)  [Issue Grant](/cases/case-details/${[CASE_REFERENCE]}/trigger/boIssueGrantForCaseMatching)  [Escalate to Registrar](/cases/case-details/${[CASE_REFERENCE]}/trigger/boEscalateToRegistrar)  [Select For QA](/cases/case-details/${[CASE_REFERENCE]}/trigger/boSelectForQA)  [SME Referral](/cases/case-details/${[CASE_REFERENCE]}/trigger/moveToCWEscalation)  [Stop Case](/cases/case-details/${[CASE_REFERENCE]}/trigger/boStopCaseForCasePrinted)"
-                },
                 {
                   "task_state": "assigned",
                   "task_system": "SELF",
@@ -177,10 +136,22 @@
     },
     {
       "request": {
-        "type": "COMPLETE",
         "credentials": {
           "key": "team-leader",
           "granularPermission": true
+        },
+        "input": {
+          "eventMessages": [
+            {
+              "destination": "RestEndpoint",
+              "template": "minimal-ccd-event-message-probate.json",
+              "replacements": {
+                "event": "boWithdrawApplicationForCasePrinted",
+                "fromState": "CasePrinted",
+                "state": "BOCaseClosed"
+              }
+            }
+          ]
         }
       },
       "expectations": [
