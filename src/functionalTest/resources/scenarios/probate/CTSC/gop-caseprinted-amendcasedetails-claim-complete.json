@@ -1,6 +1,6 @@
 {
   "description": "CasePrinted boAmendCaseDetailsForAwaitingDocumentation CLAIM COMPLETE",
-  "enabled": true,
+  "enabled": false,
   "jurisdiction": "PROBATE",
   "caseType": "GrantOfRepresentation",
   "options": {
