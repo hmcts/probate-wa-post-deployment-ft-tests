@@ -64,7 +64,6 @@ public class ScenarioSources {
             scenarioPattern = "*" + scenarioPattern + "*.json";
         }
 
-        
 
         Collection<String> scenarioSources;
         try {
