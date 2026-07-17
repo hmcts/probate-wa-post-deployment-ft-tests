@@ -52,12 +52,41 @@
               "tasks": [
                 {
                   "task_state": "unassigned",
+                  "task_system": "SELF",
+                  "test_meta_data": [
+                    {
+                      "key": "role_data_reference",
+                      "value": "ExamineDigitalCaseAdmonWill"
+                    }
+                  ],
+                  "due_date": "{$VERIFIER-ZONED_DATETIME_TODAY+10_WORKING_DAYS}",
                   "type": "ExamineDigitalCaseAdmonWill",
-                  "name": "Examine Digital Case - Admon"
+                  "name": "Examine Digital Case - Admon",
+                  "description": "[Amend Case Details](/cases/case-details/${[CASE_REFERENCE]}/trigger/boAmendCaseDetails)  [Issue Grant](/cases/case-details/${[CASE_REFERENCE]}/trigger/boIssueGrantForCaseMatching)  [Escalate to Registrar](/cases/case-details/${[CASE_REFERENCE]}/trigger/boEscalateToRegistrar)  [Select For QA](/cases/case-details/${[CASE_REFERENCE]}/trigger/boSelectForQA)  [SME Referral](/cases/case-details/${[CASE_REFERENCE]}/trigger/moveToCWEscalation)  [Stop Case](/cases/case-details/${[CASE_REFERENCE]}/trigger/boStopCaseForCasePrinted)"
                 }
               ]
             }
-          }
+          },
+          "roleData": [
+            {
+              "key": "ExamineDigitalCaseAdmonWill",
+              "numberOfRolesAvailable": 2,
+              "roles": [
+                {
+                  "role_category": "CTSC",
+                  "role_name": "ctsc",
+                  "permissions": [ "Read", "Own", "Claim", "Unclaim", "Assign", "Unassign" ],
+                  "authorisations": ["SKILL:ABA6:AdmonExamining"]
+                },
+                {
+                  "role_category": "CTSC",
+                  "role_name": "ctsc-team-leader",
+                  "permissions": [ "Read", "Own", "Claim", "Unclaim", "Manage", "Complete", "Cancel", "Assign", "Unassign" ],
+                  "authorisations": ["SKILL:ABA6:AdmonExamining"]
+                }
+              ]
+            }
+          ]
         }
       ]
     },
