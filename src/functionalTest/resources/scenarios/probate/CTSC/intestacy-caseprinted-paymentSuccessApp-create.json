@@ -1,5 +1,5 @@
 {
-  "description": "Intestacy CasePrinted paymentSuccessApp CREATE",
+  "description": "Intestacy CasePrinted paymentSuccessApp Create",
   "enabled": true,
   "jurisdiction": "PROBATE",
   "caseType": "GrantOfRepresentation",
@@ -12,7 +12,7 @@
     },
     "ccd": [
       {
-        "eventId": "paymentSuccessApp",
+        "eventId": "applyforGrantPaperApplicationMan",
         "caseData": {
           "template": "minimal-probate.json",
           "replacements": {
@@ -34,6 +34,15 @@
               "destination": "RestEndpoint",
               "template": "minimal-ccd-event-message-probate.json",
               "replacements": {
+                "EventId": "paymentSuccessApp",
+                "NewStateId": "CasePrinted",
+                "AdditionalData": {
+                  "Data": {
+                    "evidenceHandled": false,
+                    "caseType": "intestacy",
+                    "boHandoffReasonList": []
+                  }
+                }
               }
             }
           ]
@@ -51,17 +60,17 @@
             "replacements": {
               "tasks": [
                 {
-                  "task_state": "unassigned",
-                  "task_system": "SELF",
                   "test_meta_data": [
                     {
                       "key": "role_data_reference",
                       "value": "ExamineDigitalCaseIntestacy"
                     }
                   ],
-                  "due_date": "{$VERIFIER-ZONED_DATETIME_TODAY+10_WORKING_DAYS}",
                   "type": "ExamineDigitalCaseIntestacy",
                   "name": "Examine Digital Case - Intestacy",
+                  "minor_priority": 500,
+                  "major_priority": 5000,
+                  "due_date": "{$VERIFIER-ZONED_DATETIME_TODAY+10_WORKING_DAYS}",
                   "description": "[Amend Case Details](/cases/case-details/${[CASE_REFERENCE]}/trigger/boAmendCaseDetails)  [Issue Grant](/cases/case-details/${[CASE_REFERENCE]}/trigger/boIssueGrantForCaseMatching)  [Escalate to Registrar](/cases/case-details/${[CASE_REFERENCE]}/trigger/boEscalateToRegistrar)  [Select For QA](/cases/case-details/${[CASE_REFERENCE]}/trigger/boSelectForQA)  [SME Referral](/cases/case-details/${[CASE_REFERENCE]}/trigger/moveToCWEscalation)  [Stop Case](/cases/case-details/${[CASE_REFERENCE]}/trigger/boStopCaseForCasePrinted)"
                 }
               ]
@@ -76,7 +85,7 @@
                   "role_category": "CTSC",
                   "role_name": "ctsc",
                   "permissions": [ "Read", "Own", "Claim", "Unclaim", "Assign", "Unassign" ],
-                  "authorisations": ["SKILL:ABA6:IntestacyExamining"]
+                  "authorisations": [ "SKILL:ABA6:IntestacyExamining" ]
                 },
                 {
                   "role_category": "CTSC",

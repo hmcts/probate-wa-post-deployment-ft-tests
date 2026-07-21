@@ -1,6 +1,6 @@
 {
   "description": "Intestacy CasePrinted createCase CREATE",
-  "enabled": true,
+  "enabled": false,
   "jurisdiction": "PROBATE",
   "caseType": "GrantOfRepresentation",
   "options": {
