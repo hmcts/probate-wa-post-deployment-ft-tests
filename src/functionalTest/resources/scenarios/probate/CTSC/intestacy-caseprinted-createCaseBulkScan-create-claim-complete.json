@@ -1,5 +1,5 @@
 {
-  "description": "Create case for intestacy caseType with event createCaseFromBulkScan and CLAIM COMPLETE task",
+  "description": "Intestacy caseType with event createCaseFromBulkScan and CLAIM COMPLETE task",
   "enabled": true,
   "jurisdiction": "PROBATE",
   "caseType": "GrantOfRepresentation",
