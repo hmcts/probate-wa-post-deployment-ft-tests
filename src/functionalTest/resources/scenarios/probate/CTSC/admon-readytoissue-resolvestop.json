@@ -22,44 +22,6 @@
       }
     ]
   },
-  "before": {
-    "request": {
-      "credentials": {
-        "key": "caseworker"
-      },
-      "input": {
-        "eventMessages": [
-          {
-            "destination": "RestEndpoint",
-            "template": "minimal-ccd-event-message-probate.json",
-            "replacements": {
-            }
-          }
-        ]
-      }
-    },
-    "expectations": [
-      {
-        "credentials": {
-          "key": "CTSC-Administrator"
-        },
-        "status": 200,
-        "numberOfTasksAvailable": 1,
-        "taskData": {
-          "template": "minimal-task-response-probate.json",
-          "replacements": {
-            "tasks": [
-              {
-                "task_state": "unassigned",
-                "type": "ExamineDigitalCaseAdmonWill",
-                "name": "Examine Digital Case - Admon"
-              }
-            ]
-          }
-        }
-      }
-    ]
-  },
   "tests": [
     {
       "request": {
@@ -72,9 +34,8 @@
               "destination": "RestEndpoint",
               "template": "minimal-ccd-event-message-probate.json",
               "replacements": {
-                "EventId": "attachScannedDocs",
-                "NewStateId": "CasePrinted",
-                "UserId": "3d930051-fbea-46ad-a2b4-1d501f20ac82",
+                "EventId": "boResolveStop",
+                "NewStateId": "BOReadyToIssue",
                 "AdditionalData": {
                   "Data": {
                     "evidenceHandled": false,
@@ -106,7 +67,7 @@
                 },
                 {
                   "task_state": "unassigned",
-                  "type": "ExamineDigitalCaseAdmonWill",
+                  "type": "ExamineDigitalCaseAdmonWillReadyToIssue",
                   "name": "Examine Digital Case - Admon"
                 }
               ]
