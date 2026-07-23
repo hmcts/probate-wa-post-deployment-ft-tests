@@ -73,7 +73,7 @@
               "destination": "RestEndpoint",
               "template": "minimal-ccd-event-message-probate.json",
               "replacements": {
-                "EventId": "boResolveStop",
+                "EventId": "changeState",
                 "NewStateId": "BOReadyToIssue",
                 "AdditionalData": {
                   "Data": {
