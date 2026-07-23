@@ -131,7 +131,7 @@
           "granularPermission": true
         },
         "status": 200,
-        "numberOfTasksAvailable": 1,
+        "numberOfTasksAvailable": 2,
         "taskData": {
           "template": "minimal-task-response-probate.json",
           "replacements": {
