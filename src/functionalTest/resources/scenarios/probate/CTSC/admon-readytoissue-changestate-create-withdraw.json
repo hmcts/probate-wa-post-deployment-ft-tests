@@ -1,5 +1,5 @@
 {
-  "description": "Create case with admonWill type in CasePrinted state, complete task and change state to BOReadyToIssue, claim task then verify boWithdrawApplicationForReadyToIssue withdraws task for ExamineDigitalCaseAdmonWill",
+  "description": "Create case with admonWill type in CasePrinted state, send change state event in BOReadyToIssue state to event handler and then verify boWithdrawApplicationForReadyToIssue withdraws all tasks for ExamineDigitalCaseAdmonWill",
   "enabled": true,
   "jurisdiction": "PROBATE",
   "caseType": "GrantOfRepresentation",
@@ -73,13 +73,12 @@
               "destination": "RestEndpoint",
               "template": "minimal-ccd-event-message-probate.json",
               "replacements": {
-                "EventId": "boResolveStop",
+                "EventId": "changeState",
                 "NewStateId": "BOReadyToIssue",
                 "AdditionalData": {
                   "Data": {
                     "evidenceHandled": false,
                     "caseType": "admonWill",
-                    "state": "BOReadyToIssue",
                     "boHandoffReasonList": []
                   }
                 }
@@ -168,7 +167,7 @@
               "destination": "RestEndpoint",
               "template": "minimal-ccd-event-message-probate.json",
               "replacements": {
-                "event": "boWithdrawApplicationForCasePrinted",
+                "event": "boWithdrawApplicationForReadyToIssue",
                 "fromState": "BOReadyToIssue",
                 "state": "BOCaseClosed"
               }

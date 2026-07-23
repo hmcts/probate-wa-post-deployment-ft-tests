@@ -1,5 +1,5 @@
 {
-  "description": "Create case with admonWill type in CasePrinted state, complete task and change state to BOReadyToIssue, then verify resolvesmereferral creates task for ExamineDigitalCaseAdmonWill",
+  "description": "Create case with admonWill type in CasePrinted state, verify resolvesmereferral in BOReadyToIssue state creates task for ExamineDigitalCaseAdmonWill then COMPLETE",
   "enabled": true,
   "jurisdiction": "PROBATE",
   "caseType": "GrantOfRepresentation",
