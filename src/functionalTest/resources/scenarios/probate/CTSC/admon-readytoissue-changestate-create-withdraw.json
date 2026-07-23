@@ -1,5 +1,5 @@
 {
-  "description": "Create case with admonWill type in CasePrinted state, send change state event in BOReadyToIssue state to event handler and then verify boWithdrawApplicationForReadyToIssue withdraws all tasks for ExamineDigitalCaseAdmonWill",
+  "description": "Create case with admonWill type in CasePrinted state, complete this task, send change state event in BOReadyToIssue state to event handler and then verify boWithdrawApplicationForReadyToIssue withdraws all tasks for ExamineDigitalCaseAdmonWill",
   "enabled": true,
   "jurisdiction": "PROBATE",
   "caseType": "GrantOfRepresentation",
@@ -64,6 +64,25 @@
   "tests": [
     {
       "request": {
+        "type": "COMPLETE",
+        "credentials": {
+          "key": "team-leader",
+          "granularPermission": true
+        }
+      },
+      "expectations": [
+        {
+          "credentials": {
+            "key": "CTSC-Administrator",
+            "granularPermission": true
+          },
+          "status": 200,
+          "numberOfTasksAvailable": 0
+        }
+      ]
+    },
+    {
+      "request": {
         "credentials": {
           "key": "caseworker"
         },
@@ -94,17 +113,11 @@
             "granularPermission": true
           },
           "status": 200,
-          "numberOfTasksAvailable": 2,
+          "numberOfTasksAvailable": 1,
           "taskData": {
             "template": "minimal-task-response-probate.json",
             "replacements": {
               "tasks": [
-                {
-                  "task_state": "unassigned",
-                  "type": "ExamineDigitalCaseAdmonWill",
-                  "name": "Examine Digital Case - Admon",
-                  "description": "[Amend Case Details](/cases/case-details/${[CASE_REFERENCE]}/trigger/boAmendCaseDetails)  [Issue Grant](/cases/case-details/${[CASE_REFERENCE]}/trigger/boIssueGrantForCaseMatching)  [Escalate to Registrar](/cases/case-details/${[CASE_REFERENCE]}/trigger/boEscalateToRegistrar)  [Select For QA](/cases/case-details/${[CASE_REFERENCE]}/trigger/boSelectForQA)  [SME Referral](/cases/case-details/${[CASE_REFERENCE]}/trigger/moveToCWEscalation)  [Stop Case](/cases/case-details/${[CASE_REFERENCE]}/trigger/boStopCaseForCasePrinted)"
-                },
                 {
                   "task_state": "unassigned",
                   "type": "ExamineDigitalCaseAdmonWillReadyToIssue",
@@ -115,24 +128,6 @@
             }
           },
           "roleData": [
-            {
-              "key": "ExamineDigitalCaseAdmonWill",
-              "numberOfRolesAvailable": 2,
-              "roles": [
-                {
-                  "role_category": "CTSC",
-                  "role_name": "ctsc",
-                  "permissions": [ "Read", "Own", "Claim", "Unclaim", "Assign", "Unassign" ],
-                  "authorisations": ["SKILL:ABA6:AdmonExamining"]
-                },
-                {
-                  "role_category": "CTSC",
-                  "role_name": "ctsc-team-leader",
-                  "permissions": [ "Read", "Own", "Claim", "Unclaim", "Manage", "Complete", "Cancel", "Assign", "Unassign" ],
-                  "authorisations": ["SKILL:ABA6:AdmonExamining"]
-                }
-              ]
-            },
             {
               "key": "ExamineDigitalCaseAdmonWillReadyToIssue",
               "numberOfRolesAvailable": 2,
