@@ -65,7 +65,6 @@ public class ScenarioSources {
         }
 
 
-
         Collection<String> scenarioSources;
         try {
             scenarioSources = StringResourceLoader
