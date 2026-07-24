@@ -1,0 +1,163 @@
+{
+  "description": "Create case with admonWill type in CasePrinted state, then verify attachScannedDocs creates task for ExamineDigitalCaseAdmonWill",
+  "enabled": true,
+  "jurisdiction": "PROBATE",
+  "caseType": "GrantOfRepresentation",
+  "options": {
+    "taskRetrievalApi": "task-management-api"
+  },
+  "required": {
+    "credentials": {
+      "key": "systemupdate"
+    },
+    "ccd": [
+      {
+        "eventId": "applyforGrantPaperApplicationMan",
+        "caseData": {
+          "template": "minimal-probate.json",
+          "replacements": {
+            "caseType": "admonWill"
+          }
+        }
+      }
+    ]
+  },
+  "before": {
+    "request": {
+      "credentials": {
+        "key": "team-leader",
+        "granularPermission": true
+      },
+      "input": {
+        "eventMessages": [
+          {
+            "destination": "RestEndpoint",
+            "template": "minimal-ccd-event-message-probate.json",
+            "replacements": {
+              "EventId": "changeState",
+              "NewStateId": "CasePrinted",
+              "AdditionalData": {
+                "Data": {
+                  "evidenceHandled": false,
+                  "caseType": "admonWill",
+                  "boHandoffReasonList": []
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "expectations": [
+      {
+        "credentials": {
+          "key": "CTSC-Administrator"
+        },
+        "status": 200,
+        "numberOfTasksAvailable": 2,
+        "taskData": {
+          "template": "minimal-task-response-probate.json",
+          "replacements": {
+            "tasks": [
+              {
+                "task_state": "unassigned",
+                "task_system": "SELF",
+                "test_meta_data": [
+                  {
+                    "key": "role_data_reference",
+                    "value": "ExamineDigitalCaseAdmonWill1"
+                  }
+                ],
+                "type": "ExamineDigitalCaseAdmonWill",
+                "name": "Examine Digital Case - Admon"
+              },
+              {
+                "task_state": "unassigned",
+                "task_system": "SELF",
+                "test_meta_data": [
+                  {
+                    "key": "role_data_reference",
+                    "value": "ExamineDigitalCaseAdmonWill2"
+                  }
+                ],
+                "type": "ExamineDigitalCaseAdmonWill",
+                "name": "Examine Digital Case - Admon"
+              }
+            ]
+          }
+        },
+        "roleData": [
+          {
+            "key": "ExamineDigitalCaseAdmonWill1",
+            "numberOfRolesAvailable": 2,
+            "roles": [
+              {
+                "role_category": "CTSC",
+                "role_name": "ctsc",
+                "permissions": [ "Read", "Own", "Claim", "Unclaim", "Assign", "Unassign" ],
+                "authorisations": ["SKILL:ABA6:AdmonExamining"]
+              },
+              {
+                "role_category": "CTSC",
+                "role_name": "ctsc-team-leader",
+                "permissions": [ "Read", "Own", "Claim", "Unclaim", "Manage", "Complete", "Cancel", "Assign", "Unassign" ],
+                "authorisations": ["SKILL:ABA6:AdmonExamining"]
+              }
+            ]
+          },
+          {
+            "key": "ExamineDigitalCaseAdmonWill2",
+            "numberOfRolesAvailable": 2,
+            "roles": [
+              {
+                "role_category": "CTSC",
+                "role_name": "ctsc",
+                "permissions": [ "Read", "Own", "Claim", "Unclaim", "Assign", "Unassign" ],
+                "authorisations": ["SKILL:ABA6:AdmonExamining"]
+              },
+              {
+                "role_category": "CTSC",
+                "role_name": "ctsc-team-leader",
+                "permissions": [ "Read", "Own", "Claim", "Unclaim", "Manage", "Complete", "Cancel", "Assign", "Unassign" ],
+                "authorisations": ["SKILL:ABA6:AdmonExamining"]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "tests": [
+    {
+      "request": {
+        "credentials": {
+          "key": "team-leader",
+          "granularPermission": true
+        },
+        "input": {
+          "eventMessages": [
+            {
+              "destination": "RestEndpoint",
+              "template": "minimal-ccd-event-message-probate.json",
+              "replacements": {
+                "event": "boWithdrawApplicationForCasePrinted",
+                "fromState": "CasePrinted",
+                "state": "BOCaseClosed"
+              }
+            }
+          ]
+        }
+      },
+      "expectations": [
+        {
+          "credentials": {
+            "key": "CTSC-Administrator",
+            "granularPermission": true
+          },
+          "status": 200,
+          "numberOfTasksAvailable": 0
+        }
+      ]
+    }
+  ]
+}

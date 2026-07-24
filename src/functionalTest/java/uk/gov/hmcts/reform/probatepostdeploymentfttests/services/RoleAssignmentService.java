@@ -118,7 +118,7 @@ public class RoleAssignmentService {
         //TODO: hardcoded to support the CTSC role with requied ProbateExamining skill in authorisations to use CLAIM
         String authorizations;
         if (roleName.equals("ctsc")) {
-            authorizations = JsonUtil.toJsonString(List.of("SKILL:ABA6:ProbateExamining", "SKILL:ABA6:DeBonisNon"));
+            authorizations = JsonUtil.toJsonString(List.of("SKILL:ABA6:ProbateExamining", "SKILL:ABA6:AdmonExamining", "SKILL:ABA6:DeBonisNon"));
         } else {
             authorizations = JsonUtil.toJsonString(List.of());
         }
