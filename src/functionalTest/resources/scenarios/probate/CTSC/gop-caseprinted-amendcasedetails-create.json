@@ -1,5 +1,5 @@
 {
-  "description": "BOReadyToIssue resolveCWEscalation DeBonisNon - Create",
+  "description": "CasePrinted boAmendCaseDetailsForAwaitingDocumentation Create",
   "enabled": true,
   "jurisdiction": "PROBATE",
   "caseType": "GrantOfRepresentation",
@@ -33,27 +33,13 @@
             "destination": "RestEndpoint",
             "template": "minimal-ccd-event-message-probate.json",
             "replacements": {
-              "EventId": "resolveCWEscalation",
-              "NewStateId": "BOReadyToIssue",
+              "EventId": "boAmendCaseDetailsForAwaitingDocumentation",
+              "NewStateId": "CasePrinted",
               "AdditionalData": {
                 "Data": {
                   "evidenceHandled": false,
                   "caseType": "gop",
-                  "caseHandedOffToLegacySite": true,
-                  "boHandoffReasonList": [
-                    {
-                      "id": "df3be732-2172-49da-80fe-cad8586e4928",
-                      "value": {
-                        "caseHandoffReason": "DeBonisNon"
-                      }
-                    },
-                    {
-                      "id": "dddbe732-2172-49da-80fe-cad8586e4928",
-                      "value": {
-                        "caseHandoffReason": "OtherReason"
-                      }
-                    }
-                  ]
+                  "boHandoffReasonList": []
                 }
               }
             }
@@ -76,15 +62,14 @@
                 "test_meta_data": [
                   {
                     "key": "role_data_reference",
-                    "value": "ExamineDeBonisNon"
+                    "value": "ExamineDigitalCaseProbate"
                   }
                 ],
-                "type": "ExamineDeBonisNon",
-                "name": "Examine - De Bonis Non",
+                "type": "ExamineDigitalCaseProbate",
+                "name": "Examine Digital Case - Probate",
                 "minor_priority": 500,
                 "major_priority": 5000,
-                "due_date": "{$VERIFIER-ZONED_DATETIME_TODAY+10_WORKING_DAYS}",
-                "description": "[Issue Grant](/cases/case-details/${[CASE_REFERENCE]}/trigger/boIssueGrantForCaseMatching)  [Escalate to Registrar](/cases/case-details/${[CASE_REFERENCE]}/trigger/boEscalateToRegistrar)  [SME Referral](/cases/case-details/${[CASE_REFERENCE]}/trigger/moveToCWEscalation)  [Stop Case](/cases/case-details/${[CASE_REFERENCE]}/trigger/boStopCaseForCaseMatchingForExamining)"
+                "description": "[Amend Case Details](/cases/case-details/${[CASE_REFERENCE]}/trigger/boAmendCaseDetails)  [Issue Grant](/cases/case-details/${[CASE_REFERENCE]}/trigger/boIssueGrantForCaseMatching)  [Escalate to Registrar](/cases/case-details/${[CASE_REFERENCE]}/trigger/boEscalateToRegistrar)  [Select For QA](/cases/case-details/${[CASE_REFERENCE]}/trigger/boSelectForQA)  [SME Referral](/cases/case-details/${[CASE_REFERENCE]}/trigger/moveToCWEscalation)  [Stop Case](/cases/case-details/${[CASE_REFERENCE]}/trigger/boStopCaseForCasePrinted)"
               },
               {
                 "test_meta_data": [
@@ -97,7 +82,6 @@
                 "name": "Examine Digital Case - Probate",
                 "minor_priority": 500,
                 "major_priority": 5000,
-                "due_date": "{$VERIFIER-ZONED_DATETIME_TODAY+10_WORKING_DAYS}",
                 "description": "[Amend Case Details](/cases/case-details/${[CASE_REFERENCE]}/trigger/boAmendCaseDetails)  [Issue Grant](/cases/case-details/${[CASE_REFERENCE]}/trigger/boIssueGrantForCaseMatching)  [Escalate to Registrar](/cases/case-details/${[CASE_REFERENCE]}/trigger/boEscalateToRegistrar)  [Select For QA](/cases/case-details/${[CASE_REFERENCE]}/trigger/boSelectForQA)  [SME Referral](/cases/case-details/${[CASE_REFERENCE]}/trigger/moveToCWEscalation)  [Stop Case](/cases/case-details/${[CASE_REFERENCE]}/trigger/boStopCaseForCasePrinted)"
               }
             ]
@@ -105,20 +89,20 @@
         },
         "roleData": [
           {
-            "key": "ExamineDeBonisNon",
+            "key": "ExamineDigitalCaseProbate",
             "numberOfRolesAvailable": 2,
             "roles": [
               {
                 "role_category": "CTSC",
                 "role_name": "ctsc",
                 "permissions": [ "Read", "Own", "Claim", "Unclaim", "Assign", "Unassign" ],
-                "authorisations": ["SKILL:ABA6:DeBonisNon"]
+                "authorisations": ["SKILL:ABA6:ProbateExamining"]
               },
               {
                 "role_category": "CTSC",
                 "role_name": "ctsc-team-leader",
                 "permissions": [ "Read", "Own", "Claim", "Unclaim", "Manage", "Complete", "Cancel", "Assign", "Unassign" ],
-                "authorisations": ["SKILL:ABA6:DeBonisNon"]
+                "authorisations": ["SKILL:ABA6:ProbateExamining"]
               }
             ]
           }
