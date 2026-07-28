@@ -64,8 +64,6 @@ public class ScenarioSources {
             scenarioPattern = "*" + scenarioPattern + "*.json";
         }
 
-        scenarioPattern = "readytoissue-resolvecwescalation-debonisnon-create.json";
-
         Collection<String> scenarioSources;
         try {
             scenarioSources = StringResourceLoader
