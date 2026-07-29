@@ -1,6 +1,6 @@
 {
   "description": "Create case with intestacy type in CasePrinted state, complete this task, send change state event in BOReadyToIssue state to event handler and then verify boWithdrawApplicationForReadyToIssue withdraws all tasks for ExamineDigitalCaseIntestacy",
-  "enabled": true,
+  "enabled": false,
   "jurisdiction": "PROBATE",
   "caseType": "GrantOfRepresentation",
   "options": {

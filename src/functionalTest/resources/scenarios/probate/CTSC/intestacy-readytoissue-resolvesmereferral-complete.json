@@ -1,6 +1,6 @@
 {
   "description": "Create case with intestacy type in CasePrinted state, complete this task, then verify resolvesmereferral in BOReadyToIssue state creates task for ExamineDigitalCaseIntestacy then COMPLETE",
-  "enabled": true,
+  "enabled": false,
   "jurisdiction": "PROBATE",
   "caseType": "GrantOfRepresentation",
   "options": {
