@@ -1,6 +1,6 @@
 {
   "description": "Create case with adColligendaBona case type in CasePrinted state, complete this task, execute handleEvidence event in BOReadyToIssue state to event handler and then verify boWithdrawApplicationForReadyToIssue withdraws all tasks for ExamineDigitalCaseAdColligendaBona",
-  "enabled": false,
+  "enabled": true,
   "jurisdiction": "PROBATE",
   "caseType": "GrantOfRepresentation",
   "options": {
@@ -16,7 +16,6 @@
         "caseData": {
           "template": "minimal-probate.json",
           "replacements": {
-            "caseType": "adColligendaBona"
           }
         }
       }
@@ -51,8 +50,8 @@
             "tasks": [
               {
                 "task_state": "unassigned",
-                "type": "ExamineDigitalCaseAdColligendaBona",
-                "name": "Examine Digital Case - Ad Colligenda Bona",
+                "type": "ExamineDigitalCaseProbate",
+                "name": "Examine Digital Case - Probate",
                 "description": "[Amend Case Details](/cases/case-details/${[CASE_REFERENCE]}/trigger/boAmendCaseDetails)  [Issue Grant](/cases/case-details/${[CASE_REFERENCE]}/trigger/boIssueGrantForCaseMatching)  [Escalate to Registrar](/cases/case-details/${[CASE_REFERENCE]}/trigger/boEscalateToRegistrar)  [Select For QA](/cases/case-details/${[CASE_REFERENCE]}/trigger/boSelectForQA)  [SME Referral](/cases/case-details/${[CASE_REFERENCE]}/trigger/moveToCWEscalation)  [Stop Case](/cases/case-details/${[CASE_REFERENCE]}/trigger/boStopCaseForCasePrinted)"
               }
             ]
@@ -92,7 +91,43 @@
               "destination": "RestEndpoint",
               "template": "minimal-ccd-event-message-probate.json",
               "replacements": {
-                "EventId": "handleEvidence",
+                "EventId": "boAmendCaseDetailsForAwaitingDocumentation",
+                "NewStateId": "CasePrinted",
+                "AdditionalData": {
+                  "Data": {
+                    "evidenceHandled": false,
+                    "caseType": "adColligendaBona",
+                    "boHandoffReasonList": []
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "expectations": [
+        {
+          "credentials": {
+            "key": "CTSC-Administrator",
+            "granularPermission": true
+          },
+          "status": 200,
+          "numberOfTasksAvailable": 0
+        }
+      ]
+    },
+    {
+      "request": {
+        "credentials": {
+          "key": "caseworker"
+        },
+        "input": {
+          "eventMessages": [
+            {
+              "destination": "RestEndpoint",
+              "template": "minimal-ccd-event-message-probate.json",
+              "replacements": {
+                "EventId": "changeState",
                 "NewStateId": "BOReadyToIssue",
                 "AdditionalData": {
                   "Data": {
@@ -126,25 +161,25 @@
                 }
               ]
             }
-          },
-          "roleData": [
+          }
+        }
+      ],
+      "roleData": [
+        {
+          "key": "ExamineDigitalCaseAdColligendaBonaReadyToIssue",
+          "numberOfRolesAvailable": 2,
+          "roles": [
             {
-              "key": "ExamineDigitalCaseAdColligendaBonaReadyToIssue",
-              "numberOfRolesAvailable": 2,
-              "roles": [
-                {
-                  "role_category": "CTSC",
-                  "role_name": "ctsc",
-                  "permissions": [ "Read", "Own", "Claim", "Unclaim", "Assign", "Unassign" ],
-                  "authorisations": ["SKILL:ABA6:AdColligendaBonaExamining"]
-                },
-                {
-                  "role_category": "CTSC",
-                  "role_name": "ctsc-team-leader",
-                  "permissions": [ "Read", "Own", "Claim", "Unclaim", "Manage", "Complete", "Cancel", "Assign", "Unassign" ],
-                  "authorisations": ["SKILL:ABA6:AdColligendaBonaExamining"]
-                }
-              ]
+              "role_category": "CTSC",
+              "role_name": "ctsc",
+              "permissions": [ "Read", "Own", "Claim", "Unclaim", "Assign", "Unassign" ],
+              "authorisations": ["SKILL:ABA6:AdColligendaBonaExamining"]
+            },
+            {
+              "role_category": "CTSC",
+              "role_name": "ctsc-team-leader",
+              "permissions": [ "Read", "Own", "Claim", "Unclaim", "Manage", "Complete", "Cancel", "Assign", "Unassign" ],
+              "authorisations": ["SKILL:ABA6:AdColligendaBonaExamining"]
             }
           ]
         }
