@@ -1,5 +1,5 @@
 {
-  "description": "Intestacy CasePrinted serviceRequestPaymentSuccess Create",
+  "description": "Intestacy CasePrinted solicitorPaymentSuccessCase Create",
   "enabled": true,
   "jurisdiction": "PROBATE",
   "caseType": "GrantOfRepresentation",
@@ -34,7 +34,7 @@
               "destination": "RestEndpoint",
               "template": "minimal-ccd-event-message-probate.json",
               "replacements": {
-                "EventId": "serviceRequestPaymentSuccess",
+                "EventId": "solicitorPaymentSuccessCase",
                 "NewStateId": "CasePrinted",
                 "AdditionalData": {
                   "Data": {
