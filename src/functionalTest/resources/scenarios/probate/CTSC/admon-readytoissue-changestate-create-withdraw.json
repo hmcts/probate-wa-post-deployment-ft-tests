@@ -1,0 +1,185 @@
+{
+  "description": "Create case with admonWill type in CasePrinted state, complete this task, send change state event in BOReadyToIssue state to event handler and then verify boWithdrawApplicationForReadyToIssue withdraws all tasks for ExamineDigitalCaseAdmonWill",
+  "enabled": true,
+  "jurisdiction": "PROBATE",
+  "caseType": "GrantOfRepresentation",
+  "options": {
+    "taskRetrievalApi": "task-management-api"
+  },
+  "required": {
+    "credentials": {
+      "key": "systemupdate"
+    },
+    "ccd": [
+      {
+        "eventId": "applyforGrantPaperApplicationMan",
+        "caseData": {
+          "template": "minimal-probate.json",
+          "replacements": {
+            "caseType": "admonWill"
+          }
+        }
+      }
+    ]
+  },
+  "before": {
+    "request": {
+      "credentials": {
+        "key": "caseworker"
+      },
+      "input": {
+        "eventMessages": [
+          {
+            "destination": "RestEndpoint",
+            "template": "minimal-ccd-event-message-probate.json",
+            "replacements": {
+            }
+          }
+        ]
+      }
+    },
+    "expectations": [
+      {
+        "credentials": {
+          "key": "CTSC-Administrator"
+        },
+        "status": 200,
+        "numberOfTasksAvailable": 1,
+        "taskData": {
+          "template": "minimal-task-response-probate.json",
+          "replacements": {
+            "tasks": [
+              {
+                "task_state": "unassigned",
+                "type": "ExamineDigitalCaseAdmonWill",
+                "name": "Examine Digital Case - Admon",
+                "description": "[Amend Case Details](/cases/case-details/${[CASE_REFERENCE]}/trigger/boAmendCaseDetails)  [Issue Grant](/cases/case-details/${[CASE_REFERENCE]}/trigger/boIssueGrantForCaseMatching)  [Escalate to Registrar](/cases/case-details/${[CASE_REFERENCE]}/trigger/boEscalateToRegistrar)  [Select For QA](/cases/case-details/${[CASE_REFERENCE]}/trigger/boSelectForQA)  [SME Referral](/cases/case-details/${[CASE_REFERENCE]}/trigger/moveToCWEscalation)  [Stop Case](/cases/case-details/${[CASE_REFERENCE]}/trigger/boStopCaseForCasePrinted)"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "tests": [
+    {
+      "request": {
+        "type": "COMPLETE",
+        "credentials": {
+          "key": "team-leader",
+          "granularPermission": true
+        }
+      },
+      "expectations": [
+        {
+          "credentials": {
+            "key": "CTSC-Administrator",
+            "granularPermission": true
+          },
+          "status": 200,
+          "numberOfTasksAvailable": 0
+        }
+      ]
+    },
+    {
+      "request": {
+        "credentials": {
+          "key": "caseworker"
+        },
+        "input": {
+          "eventMessages": [
+            {
+              "destination": "RestEndpoint",
+              "template": "minimal-ccd-event-message-probate.json",
+              "replacements": {
+                "EventId": "changeState",
+                "NewStateId": "BOReadyToIssue",
+                "AdditionalData": {
+                  "Data": {
+                    "evidenceHandled": false,
+                    "caseType": "admonWill",
+                    "boHandoffReasonList": []
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "expectations": [
+        {
+          "credentials": {
+            "key": "CTSC-Administrator",
+            "granularPermission": true
+          },
+          "status": 200,
+          "numberOfTasksAvailable": 1,
+          "taskData": {
+            "template": "minimal-task-response-probate.json",
+            "replacements": {
+              "tasks": [
+                {
+                  "task_state": "unassigned",
+                  "type": "ExamineDigitalCaseAdmonWillReadyToIssue",
+                  "name": "Examine Digital Case - Admon",
+                  "description": "[Amend Case Details](/cases/case-details/${[CASE_REFERENCE]}/trigger/boAmendCaseDetails)  [Issue Grant](/cases/case-details/${[CASE_REFERENCE]}/trigger/boIssueGrantForCaseMatching)  [Escalate to Registrar](/cases/case-details/${[CASE_REFERENCE]}/trigger/boEscalateToRegistrar)  [SME Referral](/cases/case-details/${[CASE_REFERENCE]}/trigger/moveToCWEscalation)  [Stop Case](/cases/case-details/${[CASE_REFERENCE]}/trigger/boStopCaseForCaseMatchingForExamining)"
+                }
+              ]
+            }
+          },
+          "roleData": [
+            {
+              "key": "ExamineDigitalCaseAdmonWillReadyToIssue",
+              "numberOfRolesAvailable": 2,
+              "roles": [
+                {
+                  "role_category": "CTSC",
+                  "role_name": "ctsc",
+                  "permissions": [ "Read", "Own", "Claim", "Unclaim", "Assign", "Unassign" ],
+                  "authorisations": ["SKILL:ABA6:AdmonExamining"]
+                },
+                {
+                  "role_category": "CTSC",
+                  "role_name": "ctsc-team-leader",
+                  "permissions": [ "Read", "Own", "Claim", "Unclaim", "Manage", "Complete", "Cancel", "Assign", "Unassign" ],
+                  "authorisations": ["SKILL:ABA6:AdmonExamining"]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "request": {
+        "credentials": {
+          "key": "team-leader",
+          "granularPermission": true
+        },
+        "input": {
+          "eventMessages": [
+            {
+              "destination": "RestEndpoint",
+              "template": "minimal-ccd-event-message-probate.json",
+              "replacements": {
+                "event": "boWithdrawApplicationForReadyToIssue",
+                "fromState": "BOReadyToIssue",
+                "state": "BOCaseClosed"
+              }
+            }
+          ]
+        }
+      },
+      "expectations": [
+        {
+          "credentials": {
+            "key": "CTSC-Administrator",
+            "granularPermission": true
+          },
+          "status": 200,
+          "numberOfTasksAvailable": 0
+        }
+      ]
+    }
+  ]
+}
