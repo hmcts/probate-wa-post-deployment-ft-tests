@@ -120,7 +120,8 @@ public class RoleAssignmentService {
             authorizations = JsonUtil.toJsonString(
                 List.of("SKILL:ABA6:ProbateExamining",
                         "SKILL:ABA6:AdmonExamining",
-                        "SKILL:ABA6:DeBonisNon"));
+                        "SKILL:ABA6:DeBonisNon",
+                        "SKILL:ABA6:IntestacyExamining"));
         } else {
             authorizations = JsonUtil.toJsonString(List.of());
         }
