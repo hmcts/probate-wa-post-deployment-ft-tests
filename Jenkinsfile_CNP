@@ -62,6 +62,7 @@ withNightlyPipeline(type, product, component) {
   }
 
   onPR {
+
     def PROBATE_WA_PR = "3848"
 
     env.WA_POST_DEPLOYMENT_TEST_ENVIRONMENT="preview"
