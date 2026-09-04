@@ -33,8 +33,8 @@ public class AuthorizationHeadersProvider  implements AuthorizationHeaders {
     public static final String SERVICE_AUTHORIZATION = "ServiceAuthorization";
     private static final String WA_USER_PASSWORD = "System01";
 
-    private final Map<String, String> tokens = new ConcurrentHashMap<>();
-    private final Map<String, UserInfo> userInfo = new ConcurrentHashMap<>();
+    private Map<String, String> tokens = new ConcurrentHashMap<>();
+    private Map<String, UserInfo> userInfo = new ConcurrentHashMap<>();
     private final Map<String, String> testUserAccounts = new ConcurrentHashMap<>();
     @Value("${idam.redirectUrl}")
     protected String idamRedirectUrl;
@@ -53,10 +53,13 @@ public class AuthorizationHeadersProvider  implements AuthorizationHeaders {
 
     @Autowired
     public AuthorizationHeadersProvider(IdamWebApi idamWebApi, AuthTokenGenerator serviceAuthTokenGenerator,
-                                        RoleAssignmentService roleAssignmentService) {
+                                        RoleAssignmentService roleAssignmentService, Map<String, String> tokens,
+                                        Map<String, UserInfo> userInfo) {
         this.idamWebApi = idamWebApi;
         this.serviceAuthTokenGenerator = serviceAuthTokenGenerator;
         this.roleAssignmentService = roleAssignmentService;
+        this.tokens = tokens;
+        this.userInfo = userInfo;
     }
 
     @Override
