@@ -33,9 +33,9 @@ public class AuthorizationHeadersProvider  implements AuthorizationHeaders {
     public static final String SERVICE_AUTHORIZATION = "ServiceAuthorization";
     private static final String WA_USER_PASSWORD = "System01";
 
-    private Map<String, String> tokens = new ConcurrentHashMap<>();
-    private Map<String, UserInfo> userInfo = new ConcurrentHashMap<>();
-    private Map<String, String> testUserAccounts = new ConcurrentHashMap<>();
+    private Map<String, String> tokens;
+    private Map<String, UserInfo> userInfo;
+    private Map<String, String> testUserAccounts;
     @Value("${idam.redirectUrl}")
     protected String idamRedirectUrl;
     @Value("${idam.scope}")
