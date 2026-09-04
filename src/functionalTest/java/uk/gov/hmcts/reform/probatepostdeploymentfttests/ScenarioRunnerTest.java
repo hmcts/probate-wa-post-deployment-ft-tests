@@ -88,6 +88,7 @@ public class ScenarioRunnerTest extends SpringBootFunctionalBaseTest {
     private final CcdCaseCreator ccdCaseCreator;
     private Map<String, String> tokens = new ConcurrentHashMap<>();
     private Map<String, String> userInfo = new ConcurrentHashMap<>();
+    private Map<String, String> testUserAccounts = new ConcurrentHashMap<>();
 
     @Value("${wa-post-deployment-test.environment}")
     protected String postDeploymentTestEnvironment;
