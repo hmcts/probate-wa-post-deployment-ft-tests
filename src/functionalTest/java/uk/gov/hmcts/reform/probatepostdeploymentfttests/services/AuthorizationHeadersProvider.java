@@ -33,9 +33,9 @@ public class AuthorizationHeadersProvider  implements AuthorizationHeaders {
     public static final String SERVICE_AUTHORIZATION = "ServiceAuthorization";
     private static final String WA_USER_PASSWORD = "System01";
 
-    private final Map<String, String> tokens = new ConcurrentHashMap<>();
-    private final Map<String, UserInfo> userInfo = new ConcurrentHashMap<>();
-    private final Map<String, String> testUserAccounts = new ConcurrentHashMap<>();
+    private Map<String, String> tokens;
+    private Map<String, UserInfo> userInfo;
+    private Map<String, String> testUserAccounts;
     @Value("${idam.redirectUrl}")
     protected String idamRedirectUrl;
     @Value("${idam.scope}")
@@ -53,10 +53,14 @@ public class AuthorizationHeadersProvider  implements AuthorizationHeaders {
 
     @Autowired
     public AuthorizationHeadersProvider(IdamWebApi idamWebApi, AuthTokenGenerator serviceAuthTokenGenerator,
-                                        RoleAssignmentService roleAssignmentService) {
+                                        RoleAssignmentService roleAssignmentService, Map<String, String> tokens,
+                                        Map<String, UserInfo> userInfo, Map<String, String> testUserAccounts) {
         this.idamWebApi = idamWebApi;
         this.serviceAuthTokenGenerator = serviceAuthTokenGenerator;
         this.roleAssignmentService = roleAssignmentService;
+        this.tokens = tokens;
+        this.userInfo = userInfo;
+        this.testUserAccounts = testUserAccounts;
     }
 
     @Override
@@ -101,7 +105,11 @@ public class AuthorizationHeadersProvider  implements AuthorizationHeaders {
     public UserInfo getUserInfo(String userToken) {
         return userInfo.computeIfAbsent(
             userToken,
-            user -> idamWebApi.userInfo(userToken)
+            user -> {
+                log.info("User token not found in userInfo. Token: {}", userToken);
+                log.info("Current userInfo contents: {}", userInfo);
+                return idamWebApi.userInfo(userToken);
+            }
         );
     }
 
@@ -130,7 +138,11 @@ public class AuthorizationHeadersProvider  implements AuthorizationHeaders {
     private Header getServiceAuthorizationHeader() {
         String serviceToken = tokens.computeIfAbsent(
             SERVICE_AUTHORIZATION,
-            user -> serviceAuthTokenGenerator.generate()
+            user -> {
+                log.info("getServiceAuthorizationHeader() Key not found in tokens. Key: {}", SERVICE_AUTHORIZATION);
+                log.info("getServiceAuthorizationHeader() Current tokens contents: {}", tokens);
+                return serviceAuthTokenGenerator.generate();
+            }
         );
 
         return new Header(SERVICE_AUTHORIZATION, serviceToken);
@@ -146,7 +158,11 @@ public class AuthorizationHeadersProvider  implements AuthorizationHeaders {
 
         String accessToken = tokens.computeIfAbsent(
             key,
-            user -> "Bearer " + idamWebApi.token(body).getAccessToken()
+            user -> {
+                log.info("Key not found in tokens. Key: {}", key);
+                log.info("Current tokens contents: {}", tokens);
+                return "Bearer " + idamWebApi.token(body).getAccessToken();
+            }
         );
         return new Header(AUTHORIZATION, accessToken);
     }
@@ -166,7 +182,11 @@ public class AuthorizationHeadersProvider  implements AuthorizationHeaders {
     private String findOrGenerateUserAccount(String credentialsKey, boolean granularPermission) {
         return testUserAccounts.computeIfAbsent(
             credentialsKey,
-            user -> generateUserAccount(credentialsKey, granularPermission)
+            user -> {
+                log.info("Key not found in testUserAccounts. Key: {}", credentialsKey);
+                log.info("Current testUserAccounts contents: {}", testUserAccounts);
+                return generateUserAccount(credentialsKey, granularPermission);
+            }
         );
     }
 
