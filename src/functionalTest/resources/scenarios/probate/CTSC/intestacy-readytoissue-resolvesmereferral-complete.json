@@ -132,11 +132,16 @@
             "granularPermission": true
           },
           "status": 200,
-          "numberOfTasksAvailable": 1,
+          "numberOfTasksAvailable": 2,
           "taskData": {
             "template": "minimal-task-response-probate.json",
             "replacements": {
               "tasks": [
+                {
+                  "task_state": "terminated",
+                  "type": "ExamineDigitalCaseIntestacy",
+                  "name": "Examine Digital Case - Intestacy"
+                },
                 {
                   "task_state": "unassigned",
                   "type": "ExamineDigitalCaseIntestacyReadyToIssue",
