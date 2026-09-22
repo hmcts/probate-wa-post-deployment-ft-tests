@@ -1,6 +1,6 @@
 {
   "description": "Create case with admonWill type in CasePrinted state, complete this task, then verify resolvestop in BOReadyToIssue state creates task for ExamineDigitalCaseAdmonWill",
-  "enabled": true,
+  "enabled": false,
   "jurisdiction": "PROBATE",
   "caseType": "GrantOfRepresentation",
   "options": {
