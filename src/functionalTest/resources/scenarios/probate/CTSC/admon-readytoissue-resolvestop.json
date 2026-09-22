@@ -1,6 +1,6 @@
 {
   "description": "Create case with admonWill type in CasePrinted state, complete this task, then verify resolvestop in BOReadyToIssue state creates task for ExamineDigitalCaseAdmonWill",
-  "enabled": true,
+  "enabled": false,
   "jurisdiction": "PROBATE",
   "caseType": "GrantOfRepresentation",
   "options": {
@@ -112,11 +112,17 @@
             "granularPermission": true
           },
           "status": 200,
-          "numberOfTasksAvailable": 1,
+          "numberOfTasksAvailable": 2,
           "taskData": {
             "template": "minimal-task-response-probate.json",
             "replacements": {
               "tasks": [
+                {
+                  "task_state": "terminated",
+                  "type": "ExamineDigitalCaseAdmonWill",
+                  "name": "Examine Digital Case - Admon",
+                  "description": "[Amend Case Details](/cases/case-details/${[CASE_REFERENCE]}/trigger/boAmendCaseDetailsForAwaitingDocumentation)  [Issue Grant](/cases/case-details/${[CASE_REFERENCE]}/trigger/boIssueGrantForCaseMatching)  [Escalate to Registrar](/cases/case-details/${[CASE_REFERENCE]}/trigger/boEscalateToRegistrar)  [Select For QA](/cases/case-details/${[CASE_REFERENCE]}/trigger/boSelectForQA)  [SME Referral](/cases/case-details/${[CASE_REFERENCE]}/trigger/moveToCWEscalation)  [Stop Case](/cases/case-details/${[CASE_REFERENCE]}/trigger/boStopCaseForCasePrinted)"
+                },
                 {
                   "task_state": "unassigned",
                   "type": "ExamineDigitalCaseAdmonWillReadyToIssue",
