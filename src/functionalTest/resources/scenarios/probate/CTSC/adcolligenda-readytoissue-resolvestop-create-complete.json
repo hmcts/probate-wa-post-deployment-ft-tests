@@ -156,7 +156,8 @@
                 {
                   "task_state": "unassigned",
                   "type": "ExamineDigitalCaseAdColligendaBonaReadyToIssue",
-                  "name": "Examine Digital Case - Ad Colligenda Bona"
+                  "name": "Examine Digital Case - Ad Colligenda Bona",
+                  "description": "[Amend Case Details](/cases/case-details/${[CASE_REFERENCE]}/trigger/boAmendCaseDetailsForReadyToIssue)  [Issue Grant](/cases/case-details/${[CASE_REFERENCE]}/trigger/boIssueGrantForCaseMatching)  [Escalate to Registrar](/cases/case-details/${[CASE_REFERENCE]}/trigger/boEscalateToRegistrar)  [SME Referral](/cases/case-details/${[CASE_REFERENCE]}/trigger/moveToCWEscalation)  [Stop Case](/cases/case-details/${[CASE_REFERENCE]}/trigger/boStopCaseForCaseMatchingForExamining)"
                 },
                 {
                   "task_state": "terminated",
