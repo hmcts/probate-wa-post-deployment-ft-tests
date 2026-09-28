@@ -1,5 +1,5 @@
 {
-  "description": "CasePrinted solicitors manual CREATE CLAIM WITHDRAW",
+  "description": "Create case with adColligendaBona case type in CasePrinted state, complete this task, then verify boResolveStop in BOReadyToIssue state creates task for ExamineDigitalCaseAdColligendaBona then COMPLETE",
   "enabled": true,
   "jurisdiction": "PROBATE",
   "caseType": "GrantOfRepresentation",
@@ -50,50 +50,20 @@
             "tasks": [
               {
                 "task_state": "unassigned",
-                "task_system": "SELF",
-                "test_meta_data": [
-                  {
-                    "key": "role_data_reference",
-                    "value": "ExamineDigitalCaseProbate"
-                  }
-                ],
-                "due_date": "{$VERIFIER-ZONED_DATETIME_TODAY+10_WORKING_DAYS}",
                 "type": "ExamineDigitalCaseProbate",
                 "name": "Examine Digital Case - Probate",
-                "minor_priority": 500,
-                "major_priority": 5000,
                 "description": "[Amend Case Details](/cases/case-details/${[CASE_REFERENCE]}/trigger/boAmendCaseDetailsForAwaitingDocumentation)  [Issue Grant](/cases/case-details/${[CASE_REFERENCE]}/trigger/boIssueGrantForCaseMatching)  [Escalate to Registrar](/cases/case-details/${[CASE_REFERENCE]}/trigger/boEscalateToRegistrar)  [Select For QA](/cases/case-details/${[CASE_REFERENCE]}/trigger/boSelectForQA)  [SME Referral](/cases/case-details/${[CASE_REFERENCE]}/trigger/moveToCWEscalation)  [Stop Case](/cases/case-details/${[CASE_REFERENCE]}/trigger/boStopCaseForCasePrinted)"
               }
             ]
           }
-        },
-        "roleData": [
-          {
-            "key": "ExamineDigitalCaseProbate",
-            "numberOfRolesAvailable": 2,
-            "roles": [
-              {
-                "role_category": "CTSC",
-                "role_name": "ctsc",
-                "permissions": [ "Read", "Own", "Claim", "Unclaim", "Assign", "Unassign" ],
-                "authorisations": ["SKILL:ABA6:ProbateExamining"]
-              },
-              {
-                "role_category": "CTSC",
-                "role_name": "ctsc-team-leader",
-                "permissions": [ "Read", "Own", "Claim", "Unclaim", "Manage", "Complete", "Cancel", "Assign", "Unassign" ],
-                "authorisations": ["SKILL:ABA6:ProbateExamining"]
-              }
-            ]
-          }
-        ]
+        }
       }
     ]
   },
   "tests": [
     {
       "request": {
-        "type": "CLAIM",
+        "type": "COMPLETE",
         "credentials": {
           "key": "team-leader",
           "granularPermission": true
@@ -106,26 +76,93 @@
             "granularPermission": true
           },
           "status": 200,
-          "numberOfTasksAvailable": 1,
+          "numberOfTasksAvailable": 0
+        }
+      ]
+    },
+    {
+      "request": {
+        "credentials": {
+          "key": "caseworker"
+        },
+        "input": {
+          "eventMessages": [
+            {
+              "destination": "RestEndpoint",
+              "template": "minimal-ccd-event-message-probate.json",
+              "replacements": {
+                "EventId": "boAmendCaseDetailsForAwaitingDocumentation",
+                "NewStateId": "CasePrinted",
+                "AdditionalData": {
+                  "Data": {
+                    "evidenceHandled": false,
+                    "caseType": "adColligendaBona",
+                    "boHandoffReasonList": []
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "expectations": [
+        {
+          "credentials": {
+            "key": "CTSC-Administrator",
+            "granularPermission": true
+          },
+          "status": 200,
+          "numberOfTasksAvailable": 0
+        }
+      ]
+    },
+    {
+      "request": {
+        "credentials": {
+          "key": "caseworker"
+        },
+        "input": {
+          "eventMessages": [
+            {
+              "destination": "RestEndpoint",
+              "template": "minimal-ccd-event-message-probate.json",
+              "replacements": {
+                "EventId": "boResolveStop",
+                "NewStateId": "BOReadyToIssue",
+                "AdditionalData": {
+                  "Data": {
+                    "evidenceHandled": false,
+                    "caseType": "adColligendaBona",
+                    "boHandoffReasonList": []
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "expectations": [
+        {
+          "credentials": {
+            "key": "CTSC-Administrator",
+            "granularPermission": true
+          },
+          "status": 200,
+          "numberOfTasksAvailable": 2,
           "taskData": {
             "template": "minimal-task-response-probate.json",
             "replacements": {
               "tasks": [
                 {
-                  "task_state": "assigned",
-                  "task_system": "SELF",
-                  "assignee": "{$ASSIGNEE_ID}",
-                  "test_meta_data": [
-                    {
-                      "key": "role_data_reference",
-                      "value": "ExamineDigitalCaseProbate"
-                    }
-                  ],
+                  "task_state": "unassigned",
+                  "type": "ExamineDigitalCaseAdColligendaBonaReadyToIssue",
+                  "name": "Examine Digital Case - Ad Colligenda Bona",
+                  "description": "[Amend Case Details](/cases/case-details/${[CASE_REFERENCE]}/trigger/boAmendCaseDetailsForReadyToIssue)  [Issue Grant](/cases/case-details/${[CASE_REFERENCE]}/trigger/boIssueGrantForCaseMatching)  [Escalate to Registrar](/cases/case-details/${[CASE_REFERENCE]}/trigger/boEscalateToRegistrar)  [SME Referral](/cases/case-details/${[CASE_REFERENCE]}/trigger/moveToCWEscalation)  [Stop Case](/cases/case-details/${[CASE_REFERENCE]}/trigger/boStopCaseForCaseMatchingForExamining)"
+                },
+                {
+                  "task_state": "terminated",
                   "type": "ExamineDigitalCaseProbate",
                   "name": "Examine Digital Case - Probate",
-                  "minor_priority": 500,
-                  "major_priority": 5000,
-                  "due_date": "{$VERIFIER-ZONED_DATETIME_TODAY+10_WORKING_DAYS}",
                   "description": "[Amend Case Details](/cases/case-details/${[CASE_REFERENCE]}/trigger/boAmendCaseDetailsForAwaitingDocumentation)  [Issue Grant](/cases/case-details/${[CASE_REFERENCE]}/trigger/boIssueGrantForCaseMatching)  [Escalate to Registrar](/cases/case-details/${[CASE_REFERENCE]}/trigger/boEscalateToRegistrar)  [Select For QA](/cases/case-details/${[CASE_REFERENCE]}/trigger/boSelectForQA)  [SME Referral](/cases/case-details/${[CASE_REFERENCE]}/trigger/moveToCWEscalation)  [Stop Case](/cases/case-details/${[CASE_REFERENCE]}/trigger/boStopCaseForCasePrinted)"
                 }
               ]
@@ -136,22 +173,10 @@
     },
     {
       "request": {
+        "type": "COMPLETE",
         "credentials": {
           "key": "team-leader",
           "granularPermission": true
-        },
-        "input": {
-          "eventMessages": [
-            {
-              "destination": "RestEndpoint",
-              "template": "minimal-ccd-event-message-probate.json",
-              "replacements": {
-                "event": "boWithdrawApplicationForCasePrinted",
-                "fromState": "CasePrinted",
-                "state": "BOCaseClosed"
-              }
-            }
-          ]
         }
       },
       "expectations": [

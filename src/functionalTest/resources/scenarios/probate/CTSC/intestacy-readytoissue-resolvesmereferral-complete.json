@@ -1,6 +1,6 @@
 {
   "description": "Create case with intestacy type in CasePrinted state, complete this task, then verify resolvesmereferral in BOReadyToIssue state creates task for ExamineDigitalCaseIntestacy then COMPLETE",
-  "enabled": false,
+  "enabled": true,
   "jurisdiction": "PROBATE",
   "caseType": "GrantOfRepresentation",
   "options": {
@@ -52,7 +52,8 @@
               {
                 "task_state": "unassigned",
                 "type": "ExamineDigitalCaseIntestacy",
-                "name": "Examine Digital Case - Intestacy"
+                "name": "Examine Digital Case - Intestacy",
+                "description": "[Amend Case Details](/cases/case-details/${[CASE_REFERENCE]}/trigger/boAmendCaseDetailsForAwaitingDocumentation)  [Issue Grant](/cases/case-details/${[CASE_REFERENCE]}/trigger/boIssueGrantForCaseMatching)  [Escalate to Registrar](/cases/case-details/${[CASE_REFERENCE]}/trigger/boEscalateToRegistrar)  [Select For QA](/cases/case-details/${[CASE_REFERENCE]}/trigger/boSelectForQA)  [SME Referral](/cases/case-details/${[CASE_REFERENCE]}/trigger/moveToCWEscalation)  [Stop Case](/cases/case-details/${[CASE_REFERENCE]}/trigger/boStopCaseForCasePrinted)"
               }
             ]
           }
@@ -132,15 +133,22 @@
             "granularPermission": true
           },
           "status": 200,
-          "numberOfTasksAvailable": 1,
+          "numberOfTasksAvailable": 2,
           "taskData": {
             "template": "minimal-task-response-probate.json",
             "replacements": {
               "tasks": [
                 {
+                  "task_state": "terminated",
+                  "type": "ExamineDigitalCaseIntestacy",
+                  "name": "Examine Digital Case - Intestacy",
+                  "description": "[Amend Case Details](/cases/case-details/${[CASE_REFERENCE]}/trigger/boAmendCaseDetailsForAwaitingDocumentation)  [Issue Grant](/cases/case-details/${[CASE_REFERENCE]}/trigger/boIssueGrantForCaseMatching)  [Escalate to Registrar](/cases/case-details/${[CASE_REFERENCE]}/trigger/boEscalateToRegistrar)  [Select For QA](/cases/case-details/${[CASE_REFERENCE]}/trigger/boSelectForQA)  [SME Referral](/cases/case-details/${[CASE_REFERENCE]}/trigger/moveToCWEscalation)  [Stop Case](/cases/case-details/${[CASE_REFERENCE]}/trigger/boStopCaseForCasePrinted)"
+                },
+                {
                   "task_state": "unassigned",
                   "type": "ExamineDigitalCaseIntestacyReadyToIssue",
-                  "name": "Examine Digital Case - Intestacy"
+                  "name": "Examine Digital Case - Intestacy",
+                  "description": "[Amend Case Details](/cases/case-details/${[CASE_REFERENCE]}/trigger/boAmendCaseDetailsForReadyToIssue)  [Issue Grant](/cases/case-details/${[CASE_REFERENCE]}/trigger/boIssueGrantForCaseMatching)  [Escalate to Registrar](/cases/case-details/${[CASE_REFERENCE]}/trigger/boEscalateToRegistrar)  [SME Referral](/cases/case-details/${[CASE_REFERENCE]}/trigger/moveToCWEscalation)  [Stop Case](/cases/case-details/${[CASE_REFERENCE]}/trigger/boStopCaseForCaseMatchingForExamining)"
                 }
               ]
             }

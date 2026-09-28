@@ -48,6 +48,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.StreamSupport;
 
 import static java.util.Collections.emptyMap;
@@ -85,6 +86,9 @@ public class ScenarioRunnerTest extends SpringBootFunctionalBaseTest {
     private final List<Verifier> verifiers;
     private final List<Preparer> preparers;
     private final CcdCaseCreator ccdCaseCreator;
+    private Map<String, String> tokens = new ConcurrentHashMap<>();
+    private Map<String, String> userInfo = new ConcurrentHashMap<>();
+    private Map<String, String> testUserAccounts = new ConcurrentHashMap<>();
 
     @Value("${wa-post-deployment-test.environment}")
     protected String postDeploymentTestEnvironment;
