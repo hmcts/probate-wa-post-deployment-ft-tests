@@ -1,6 +1,6 @@
 {
   "description": "Create Case, Refer for SME, CLAIM task, COMPLETE task, Resolve SME Referral and COMPLETE task",
-  "enabled": true,
+  "enabled": false,
   "jurisdiction": "PROBATE",
   "caseType": "GrantOfRepresentation",
   "options": {
@@ -46,13 +46,13 @@
           "key": "CTSC-Administrator"
         },
         "status": 200,
-        "numberOfTasksAvailable": 1,
+        "numberOfTasksAvailable": 2,
         "taskData": {
           "template": "minimal-task-response-probate.json",
           "replacements": {
             "tasks": [
               {
-                "task_state": "unassigned",
+                "task_state": "terminated",
                 "task_system": "SELF",
                 "test_meta_data": [
                   {
@@ -66,6 +66,22 @@
                 "major_priority": 5000,
                 "due_date": "{$VERIFIER-ZONED_DATETIME_TODAY+10_WORKING_DAYS}",
                 "description": "[Amend Case Details](/cases/case-details/${[CASE_REFERENCE]}/trigger/boAmendCaseDetailsForAwaitingDocumentation)  [Issue Grant](/cases/case-details/${[CASE_REFERENCE]}/trigger/boIssueGrantForCaseMatching)  [Escalate to Registrar](/cases/case-details/${[CASE_REFERENCE]}/trigger/boEscalateToRegistrar)  [Select For QA](/cases/case-details/${[CASE_REFERENCE]}/trigger/boSelectForQA)  [SME Referral](/cases/case-details/${[CASE_REFERENCE]}/trigger/moveToCWEscalation)  [Stop Case](/cases/case-details/${[CASE_REFERENCE]}/trigger/boStopCaseForCasePrinted)"
+              },
+              {
+                "task_state": "unassigned",
+                "task_system": "SELF",
+                "test_meta_data": [
+                  {
+                    "key": "role_data_reference",
+                    "value": "ReviewSMEReferral"
+                  }
+                ],
+                "type": "ReviewSMEReferral",
+                "name": "Review SME Referral",
+                "minor_priority": 500,
+                "major_priority": 5000,
+                "due_date": "{$VERIFIER-ZONED_DATETIME_TODAY+10_WORKING_DAYS}",
+                "description": "[Handle Supplementary Evidence](/cases/case-details/${[CASE_REFERENCE]}/trigger/handleEvidence)"
               }
             ]
           }
@@ -115,21 +131,21 @@
             "replacements": {
               "tasks": [
                 {
-                  "task_state": "assigned",
+                  "task_state": "unassigned",
                   "task_system": "SELF",
                   "assignee": "{$ASSIGNEE_ID}",
                   "test_meta_data": [
                     {
                       "key": "role_data_reference",
-                      "value": "ExamineDigitalCaseProbate"
+                      "value": "ReviewSMEReferral"
                     }
                   ],
-                  "type": "ExamineDigitalCaseProbate",
-                  "name": "Examine Digital Case - Probate",
+                  "type": "ReviewSMEReferral",
+                  "name": "Review SME Referral",
                   "minor_priority": 500,
                   "major_priority": 5000,
                   "due_date": "{$VERIFIER-ZONED_DATETIME_TODAY+10_WORKING_DAYS}",
-                  "description": "[Amend Case Details](/cases/case-details/${[CASE_REFERENCE]}/trigger/boAmendCaseDetailsForAwaitingDocumentation)  [Issue Grant](/cases/case-details/${[CASE_REFERENCE]}/trigger/boIssueGrantForCaseMatching)  [Escalate to Registrar](/cases/case-details/${[CASE_REFERENCE]}/trigger/boEscalateToRegistrar)  [Select For QA](/cases/case-details/${[CASE_REFERENCE]}/trigger/boSelectForQA)  [SME Referral](/cases/case-details/${[CASE_REFERENCE]}/trigger/moveToCWEscalation)  [Stop Case](/cases/case-details/${[CASE_REFERENCE]}/trigger/boStopCaseForCasePrinted)"
+                  "description": "[Handle Supplementary Evidence](/cases/case-details/${[CASE_REFERENCE]}/trigger/handleEvidence)"
                 }
               ]
             }
