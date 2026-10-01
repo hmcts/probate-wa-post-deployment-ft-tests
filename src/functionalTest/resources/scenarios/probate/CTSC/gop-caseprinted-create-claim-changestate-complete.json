@@ -1,6 +1,6 @@
 {
   "description": "Create case, move into ready for examination, CREATE CLAIM COMPLETE then change state to CasePrinted and COMPLETE task",
-  "enabled": true,
+  "enabled": false,
   "jurisdiction": "PROBATE",
   "caseType": "GrantOfRepresentation",
   "options": {
