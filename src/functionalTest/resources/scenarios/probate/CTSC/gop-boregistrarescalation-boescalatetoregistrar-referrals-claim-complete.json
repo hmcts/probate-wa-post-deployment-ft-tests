@@ -178,7 +178,7 @@
       "request": {
         "type": "COMPLETE",
         "credentials": {
-          "key": "team-leader",
+          "key": "tribunal-caseworker",
           "granularPermission": true
         }
       },
