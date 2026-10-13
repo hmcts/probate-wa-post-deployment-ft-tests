@@ -123,7 +123,11 @@ public class RoleAssignmentService {
                         "SKILL:ABA6:DeBonisNon",
                         "SKILL:ABA6:IntestacyExamining",
                         "SKILL:ABA6:AdColligendaBonaExamining",
-                        "SKILL:ABA6:ProbateSME"));
+                        "SKILL:ABA6:ProbateSME",
+                        "SKILL:ABA6:ProbateQA",
+                        "SKILL:ABA6:IntestacyQA",
+                        "SKILL:ABA6:AdmonQA",
+                        "SKILL:ABA6:AdColligendaBonaQA"));
         } else {
             authorizations = JsonUtil.toJsonString(List.of());
         }

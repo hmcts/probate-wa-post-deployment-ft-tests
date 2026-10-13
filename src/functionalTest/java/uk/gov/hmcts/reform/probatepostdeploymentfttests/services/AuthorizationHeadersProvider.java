@@ -254,6 +254,14 @@ public class AuthorizationHeadersProvider  implements AuthorizationHeaders {
                 roleAssignments.add("ctsc");
                 roleAssignments.add("ctsc-team-leader");
                 break;
+            case "tribunal-caseworker":
+                roleAssignments.add("tribunal-caseworker");
+                roleAssignments.add("ctsc");
+                break;
+            case "senior-tribunal-caseworker":
+                roleAssignments.add("senior-tribunal-caseworker");
+                roleAssignments.add("ctsc");
+                break;
             default:
                 throw new IllegalStateException("Credentials implementation for '" + credentialsKey + "' not found");
         }
