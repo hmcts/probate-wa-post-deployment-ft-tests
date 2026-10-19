@@ -1,5 +1,5 @@
 {
-  "description": "Create case with admonWill type in CasePrinted state, then verify attachScannedDocs creates task for ExamineDigitalCaseAdmonWill",
+  "description": "Create case with admonWill type change to CasePrinted state, then boWithdrawApplicationForCasePrinted",
   "enabled": true,
   "jurisdiction": "PROBATE",
   "caseType": "GrantOfRepresentation",
