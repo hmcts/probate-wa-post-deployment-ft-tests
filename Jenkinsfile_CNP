@@ -81,7 +81,7 @@ withNightlyPipeline(type, product, component) {
       echo "No roles specified, running all user roles"
     }
 
-    enableFullFunctionalTest(60)
+    enableFullFunctionalTest(90)
   }
 
   afterAlways('fullFunctionalTest') {
