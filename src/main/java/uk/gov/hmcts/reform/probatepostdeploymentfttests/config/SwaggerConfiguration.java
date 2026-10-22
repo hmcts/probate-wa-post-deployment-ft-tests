@@ -12,7 +12,7 @@ import org.springframework.web.method.HandlerMethod;
 
 @Configuration
 public class SwaggerConfiguration {
-//a
+
     @Bean
     public GroupedOpenApi publicApi(OperationCustomizer customGlobalHeaders) {
         return GroupedOpenApi.builder()
