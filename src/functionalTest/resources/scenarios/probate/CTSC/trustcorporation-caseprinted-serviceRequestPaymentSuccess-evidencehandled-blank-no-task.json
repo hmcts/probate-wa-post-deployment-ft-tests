@@ -1,0 +1,69 @@
+{
+  "description": "Trust Corporation CasePrinted serviceRequestPaymentSuccess evidenceHandled blank No Task Created",
+  "enabled": true,
+  "jurisdiction": "PROBATE",
+  "caseType": "GrantOfRepresentation",
+  "options": {
+    "taskRetrievalApi": "task-management-api"
+  },
+  "required": {
+    "credentials": {
+      "key": "systemupdate"
+    },
+    "ccd": [
+      {
+        "eventId": "applyforGrantPaperApplicationMan",
+        "caseData": {
+          "template": "minimal-probate-with-handoff-reason.json",
+          "replacements": {
+            "evidenceHandled": "YES"
+          }
+        }
+      }
+    ]
+  },
+  "tests": [
+    {
+      "request": {
+        "credentials": {
+          "key": "caseworker"
+        },
+        "input": {
+          "eventMessages": [
+            {
+              "destination": "RestEndpoint",
+              "template": "minimal-ccd-event-message-probate.json",
+              "replacements": {
+                "EventId": "serviceRequestPaymentSuccess",
+                "NewStateId": "CasePrinted",
+                "AdditionalData": {
+                  "Data": {
+                    "caseType": "gop",
+                    "caseHandedOffToLegacySite": true,
+                    "boHandoffReasonList": [
+                      {
+                        "id": "df3be732-2172-49da-80fe-cad8586e4928",
+                        "value": {
+                          "caseHandoffReason": "TrustCorporation"
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "expectations": [
+        {
+          "credentials": {
+            "key": "CTSC-Administrator"
+          },
+          "status": 200,
+          "numberOfTasksAvailable": 0
+        }
+      ]
+    }
+  ]
+}
