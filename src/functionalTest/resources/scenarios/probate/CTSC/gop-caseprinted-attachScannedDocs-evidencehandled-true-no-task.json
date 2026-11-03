@@ -170,7 +170,8 @@
                   "Data": {
                     "evidenceHandled": true,
                     "caseType": "gop",
-                    "boHandoffReasonList": []
+                    "boHandoffReasonList": [],
+                    "createTask": true
                   }
                 }
               }

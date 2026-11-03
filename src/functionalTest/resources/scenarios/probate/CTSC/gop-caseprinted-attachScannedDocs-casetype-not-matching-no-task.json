@@ -170,7 +170,8 @@
                   "Data": {
                     "evidenceHandled": false,
                     "caseType": "intestacy",
-                    "boHandoffReasonList": []
+                    "boHandoffReasonList": [],
+                    "createTask": true
                   }
                 }
               }

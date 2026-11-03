@@ -94,16 +94,11 @@
             "granularPermission": true
           },
           "status": 200,
-          "numberOfTasksAvailable": 2,
+          "numberOfTasksAvailable": 1,
           "taskData": {
             "template": "minimal-task-response-probate.json",
             "replacements": {
               "tasks": [
-                {
-                  "task_state": "unassigned",
-                  "type": "ExamineDigitalCaseAdmonWill",
-                  "name": "Examine Digital Case - Admon"
-                },
                 {
                   "task_state": "unassigned",
                   "type": "ExamineDigitalCaseAdmonWill",
