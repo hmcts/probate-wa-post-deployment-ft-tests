@@ -104,6 +104,24 @@
                 "authorisations": ["SKILL:ABA6:ProbateExamining"]
               }
             ]
+          },
+          {
+            "key": "ReviewSMEReferral",
+            "numberOfRolesAvailable": 2,
+            "roles": [
+              {
+                "role_category": "CTSC",
+                "role_name": "ctsc",
+                "permissions": [ "Read", "Own", "Claim", "Unclaim", "Assign", "Unassign" ],
+                "authorisations": ["SKILL:ABA6:ProbateSME"]
+              },
+              {
+                "role_category": "CTSC",
+                "role_name": "ctsc-team-leader",
+                "permissions": [ "Read", "Own", "Claim", "Unclaim", "Manage", "Complete", "Cancel", "Assign", "Unassign" ],
+                "authorisations": ["SKILL:ABA6:ProbateSME"]
+              }
+            ]
           }
         ]
       }
@@ -166,7 +184,45 @@
                 }
               ]
             }
-          }
+          },
+          "roleData": [
+            {
+              "key": "ExamineDigitalCaseProbate",
+              "numberOfRolesAvailable": 2,
+              "roles": [
+                {
+                  "role_category": "CTSC",
+                  "role_name": "ctsc",
+                  "permissions": [ "Read", "Own", "Claim", "Unclaim", "Assign", "Unassign" ],
+                  "authorisations": ["SKILL:ABA6:ProbateExamining"]
+                },
+                {
+                  "role_category": "CTSC",
+                  "role_name": "ctsc-team-leader",
+                  "permissions": [ "Read", "Own", "Claim", "Unclaim", "Manage", "Complete", "Cancel", "Assign", "Unassign" ],
+                  "authorisations": ["SKILL:ABA6:ProbateExamining"]
+                }
+              ]
+            },
+            {
+              "key": "ReviewSMEReferral",
+              "numberOfRolesAvailable": 2,
+              "roles": [
+                {
+                  "role_category": "CTSC",
+                  "role_name": "ctsc",
+                  "permissions": [ "Read", "Own", "Claim", "Unclaim", "Assign", "Unassign" ],
+                  "authorisations": ["SKILL:ABA6:ProbateSME"]
+                },
+                {
+                  "role_category": "CTSC",
+                  "role_name": "ctsc-team-leader",
+                  "permissions": [ "Read", "Own", "Claim", "Unclaim", "Manage", "Complete", "Cancel", "Assign", "Unassign" ],
+                  "authorisations": ["SKILL:ABA6:ProbateSME"]
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -246,7 +302,27 @@
                 }
               ]
             }
-          }
+          },
+          "roleData": [
+            {
+              "key": "ExamineDigitalCaseProbate",
+              "numberOfRolesAvailable": 2,
+              "roles": [
+                {
+                  "role_category": "CTSC",
+                  "role_name": "ctsc",
+                  "permissions": [ "Read", "Own", "Claim", "Unclaim", "Assign", "Unassign" ],
+                  "authorisations": ["SKILL:ABA6:ProbateExamining"]
+                },
+                {
+                  "role_category": "CTSC",
+                  "role_name": "ctsc-team-leader",
+                  "permissions": [ "Read", "Own", "Claim", "Unclaim", "Manage", "Complete", "Cancel", "Assign", "Unassign" ],
+                  "authorisations": ["SKILL:ABA6:ProbateExamining"]
+                }
+              ]
+            }
+          ]
         }
       ]
     },
