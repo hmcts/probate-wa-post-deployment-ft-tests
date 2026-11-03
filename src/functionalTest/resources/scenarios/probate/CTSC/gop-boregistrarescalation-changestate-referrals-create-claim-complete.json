@@ -1,6 +1,6 @@
 {
-  "description": "Gop BORegistrarEscalation changeState BORegistrarEscalation ResolveRegistrarEscalationReferrals Referrals CLAIM COMPLETE",
-  "enabled": true,
+  "description": "Intermittent Gop BORegistrarEscalation changeState BORegistrarEscalation ResolveRegistrarEscalationReferrals Referrals CLAIM COMPLETE",
+  "enabled": false,
   "jurisdiction": "PROBATE",
   "caseType": "GrantOfRepresentation",
   "options": {
