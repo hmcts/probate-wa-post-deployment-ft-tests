@@ -88,6 +88,8 @@
                 "description": "[Amend Case Details](/cases/case-details/${[CASE_REFERENCE]}/trigger/boAmendCaseDetailsForReadyToIssue)  [Issue Grant](/cases/case-details/${[CASE_REFERENCE]}/trigger/boIssueGrantForCaseMatching)  [Escalate to Registrar](/cases/case-details/${[CASE_REFERENCE]}/trigger/boEscalateToRegistrar)  [SME Referral](/cases/case-details/${[CASE_REFERENCE]}/trigger/moveToCWEscalation)  [Stop Case](/cases/case-details/${[CASE_REFERENCE]}/trigger/boStopCaseForCaseMatchingForExamining)"
               },
               {
+                "task_state": "unassigned",
+                "task_system": "SELF",
                 "test_meta_data": [
                   {
                     "key": "role_data_reference",
@@ -120,6 +122,24 @@
                 "role_name": "ctsc-team-leader",
                 "permissions": [ "Read", "Own", "Claim", "Unclaim", "Manage", "Complete", "Cancel", "Assign", "Unassign" ],
                 "authorisations": ["SKILL:ABA6:DeBonisNon"]
+              }
+            ]
+          },
+          {
+            "key": "ExamineDigitalCaseProbate",
+            "numberOfRolesAvailable": 2,
+            "roles": [
+              {
+                "role_category": "CTSC",
+                "role_name": "ctsc",
+                "permissions": [ "Read", "Own", "Claim", "Unclaim", "Assign", "Unassign" ],
+                "authorisations": ["SKILL:ABA6:ProbateExamining"]
+              },
+              {
+                "role_category": "CTSC",
+                "role_name": "ctsc-team-leader",
+                "permissions": [ "Read", "Own", "Claim", "Unclaim", "Manage", "Complete", "Cancel", "Assign", "Unassign" ],
+                "authorisations": ["SKILL:ABA6:ProbateExamining"]
               }
             ]
           }
@@ -166,6 +186,9 @@
                   "description": "[Amend Case Details](/cases/case-details/${[CASE_REFERENCE]}/trigger/boAmendCaseDetailsForReadyToIssue)  [Issue Grant](/cases/case-details/${[CASE_REFERENCE]}/trigger/boIssueGrantForCaseMatching)  [Escalate to Registrar](/cases/case-details/${[CASE_REFERENCE]}/trigger/boEscalateToRegistrar)  [SME Referral](/cases/case-details/${[CASE_REFERENCE]}/trigger/moveToCWEscalation)  [Stop Case](/cases/case-details/${[CASE_REFERENCE]}/trigger/boStopCaseForCaseMatchingForExamining)"
                 },
                 {
+                  "task_state": "assigned",
+                  "task_system": "SELF",
+                  "assignee": "{$ASSIGNEE_ID}",
                   "test_meta_data": [
                     {
                       "key": "role_data_reference",
@@ -181,7 +204,45 @@
                 }
               ]
             }
-          }
+          },
+          "roleData": [
+            {
+              "key": "ExamineDeBonisNon",
+              "numberOfRolesAvailable": 2,
+              "roles": [
+                {
+                  "role_category": "CTSC",
+                  "role_name": "ctsc",
+                  "permissions": [ "Read", "Own", "Claim", "Unclaim", "Assign", "Unassign" ],
+                  "authorisations": ["SKILL:ABA6:DeBonisNon"]
+                },
+                {
+                  "role_category": "CTSC",
+                  "role_name": "ctsc-team-leader",
+                  "permissions": [ "Read", "Own", "Claim", "Unclaim", "Manage", "Complete", "Cancel", "Assign", "Unassign" ],
+                  "authorisations": ["SKILL:ABA6:DeBonisNon"]
+                }
+              ]
+            },
+            {
+              "key": "ExamineDigitalCaseProbate",
+              "numberOfRolesAvailable": 2,
+              "roles": [
+                {
+                  "role_category": "CTSC",
+                  "role_name": "ctsc",
+                  "permissions": [ "Read", "Own", "Claim", "Unclaim", "Assign", "Unassign" ],
+                  "authorisations": ["SKILL:ABA6:ProbateExamining"]
+                },
+                {
+                  "role_category": "CTSC",
+                  "role_name": "ctsc-team-leader",
+                  "permissions": [ "Read", "Own", "Claim", "Unclaim", "Manage", "Complete", "Cancel", "Assign", "Unassign" ],
+                  "authorisations": ["SKILL:ABA6:ProbateExamining"]
+                }
+              ]
+            }
+          ]
         }
       ]
     },
