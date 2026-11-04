@@ -94,17 +94,35 @@
         },
         "roleData": [
           {
+            "key": "ExamineDigitalCaseProbate",
+            "numberOfRolesAvailable": 2,
+            "roles": [
+              {
+                "role_category": "CTSC",
+                "role_name": "ctsc",
+                "permissions": [ "Read", "Own", "Claim", "Unclaim", "Assign", "Unassign" ],
+                "authorisations": ["SKILL:ABA6:ProbateExamining"]
+              },
+              {
+                "role_category": "CTSC",
+                "role_name": "ctsc-team-leader",
+                "permissions": [ "Read", "Own", "Claim", "Unclaim", "Manage", "Complete", "Cancel", "Assign", "Unassign" ],
+                "authorisations": ["SKILL:ABA6:ProbateExamining"]
+              }
+            ]
+          },
+          {
             "key": "ResolveRegistrarEscalationReferrals",
             "numberOfRolesAvailable": 2,
             "roles": [
               {
                 "role_category": "LEGAL_OPERATIONS",
-                "role_name": "tribunal-caseworker",
+                "role_name": "senior-tribunal-caseworker",
                 "permissions": [ "Read", "Own", "Claim", "Unclaim", "Manage", "Complete", "Cancel", "Assign", "Unassign" ]
               },
               {
                 "role_category": "LEGAL_OPERATIONS",
-                "role_name": "senior-tribunal-caseworker",
+                "role_name": "tribunal-caseworker",
                 "permissions": [ "Read", "Own", "Claim", "Unclaim", "Manage", "Complete", "Cancel", "Assign", "Unassign" ]
               }
             ]
@@ -170,7 +188,43 @@
                 }
               ]
             }
-          }
+          },
+          "roleData": [
+            {
+              "key": "ExamineDigitalCaseProbate",
+              "numberOfRolesAvailable": 2,
+              "roles": [
+                {
+                  "role_category": "CTSC",
+                  "role_name": "ctsc",
+                  "permissions": [ "Read", "Own", "Claim", "Unclaim", "Assign", "Unassign" ],
+                  "authorisations": ["SKILL:ABA6:ProbateExamining"]
+                },
+                {
+                  "role_category": "CTSC",
+                  "role_name": "ctsc-team-leader",
+                  "permissions": [ "Read", "Own", "Claim", "Unclaim", "Manage", "Complete", "Cancel", "Assign", "Unassign" ],
+                  "authorisations": ["SKILL:ABA6:ProbateExamining"]
+                }
+              ]
+            },
+            {
+              "key": "ResolveRegistrarEscalationReferrals",
+              "numberOfRolesAvailable": 2,
+              "roles": [
+                {
+                  "role_category": "LEGAL_OPERATIONS",
+                  "role_name": "senior-tribunal-caseworker",
+                  "permissions": [ "Read", "Own", "Claim", "Unclaim", "Manage", "Complete", "Cancel", "Assign", "Unassign" ]
+                },
+                {
+                  "role_category": "LEGAL_OPERATIONS",
+                  "role_name": "tribunal-caseworker",
+                  "permissions": [ "Read", "Own", "Claim", "Unclaim", "Manage", "Complete", "Cancel", "Assign", "Unassign" ]
+                }
+              ]
+            }
+          ]
         }
       ]
     },

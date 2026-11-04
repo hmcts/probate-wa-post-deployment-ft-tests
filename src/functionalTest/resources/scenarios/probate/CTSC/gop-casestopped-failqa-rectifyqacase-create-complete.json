@@ -60,6 +60,8 @@
             "replacements": {
               "tasks": [
                 {
+                  "task_state": "unassigned",
+                  "task_system": "SELF",
                   "test_meta_data": [
                     {
                       "key": "role_data_reference",
@@ -95,20 +97,36 @@
           },
           "roleData": [
             {
-              "key": "RectifyQACase",
+              "key": "ExamineDigitalCaseProbate",
               "numberOfRolesAvailable": 2,
               "roles": [
                 {
                   "role_category": "CTSC",
                   "role_name": "ctsc",
                   "permissions": [ "Read", "Own", "Claim", "Unclaim", "Assign", "Unassign" ],
-                  "auto_assignable": true
+                  "authorisations": ["SKILL:ABA6:ProbateExamining"]
                 },
                 {
                   "role_category": "CTSC",
                   "role_name": "ctsc-team-leader",
                   "permissions": [ "Read", "Own", "Claim", "Unclaim", "Manage", "Complete", "Cancel", "Assign", "Unassign" ],
-                  "auto_assignable": true
+                  "authorisations": ["SKILL:ABA6:ProbateExamining"]
+                }
+              ]
+            },
+            {
+              "key": "RectifyQACase",
+              "numberOfRolesAvailable": 2,
+              "roles": [
+                {
+                  "role_category": "CTSC",
+                  "role_name": "ctsc",
+                  "permissions": [ "Read", "Own", "Claim", "Unclaim", "Assign", "Unassign" ]
+                },
+                {
+                  "role_category": "CTSC",
+                  "role_name": "ctsc-team-leader",
+                  "permissions": [ "Read", "Own", "Claim", "Unclaim", "Manage", "Complete", "Cancel", "Assign", "Unassign" ]
                 }
               ]
             }
