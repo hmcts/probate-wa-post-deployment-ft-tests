@@ -1,6 +1,6 @@
 {
-  "description": "BOReadyToIssue changeState DeBonisNon - Create",
-  "enabled": true,
+  "description": "Intermittent BOReadyToIssue changeState DeBonisNon - Create",
+  "enabled": false,
   "jurisdiction": "PROBATE",
   "caseType": "GrantOfRepresentation",
   "options": {
