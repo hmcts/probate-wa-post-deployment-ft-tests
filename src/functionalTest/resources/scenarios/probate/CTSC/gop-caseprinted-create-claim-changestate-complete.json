@@ -188,7 +188,44 @@
               "destination": "RestEndpoint",
               "template": "minimal-ccd-event-message-probate.json",
               "replacements": {
-                "EventId": "changeState",
+                "EventId": "cancelChangeState",
+                "NewStateId": "CasePrinted",
+                "AdditionalData": {
+                  "Data": {
+                    "evidenceHandled": false,
+                    "caseType": "gop",
+                    "boHandoffReasonList": []
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "expectations": [
+        {
+          "credentials": {
+            "key": "CTSC-Administrator",
+            "granularPermission": true
+          },
+          "status": 200,
+          "numberOfTasksAvailable": 0
+        }
+      ]
+    },
+    {
+      "request": {
+        "credentials": {
+          "key": "team-leader",
+          "granularPermission": true
+        },
+        "input": {
+          "eventMessages": [
+            {
+              "destination": "RestEndpoint",
+              "template": "minimal-ccd-event-message-probate.json",
+              "replacements": {
+                "EventId": "createChangeState",
                 "NewStateId": "CasePrinted",
                 "AdditionalData": {
                   "Data": {

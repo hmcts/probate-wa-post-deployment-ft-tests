@@ -122,7 +122,7 @@
               "destination": "RestEndpoint",
               "template": "minimal-ccd-event-message-probate.json",
               "replacements": {
-                "EventId": "changeState",
+                "EventId": "createChangeState",
                 "NewStateId": "CasePrinted",
                 "AdditionalData": {
                   "Data": {

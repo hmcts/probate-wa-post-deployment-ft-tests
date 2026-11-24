@@ -157,7 +157,7 @@
               "destination": "RestEndpoint",
               "template": "minimal-ccd-event-message-probate.json",
               "replacements": {
-                "EventId": "changeState",
+                "EventId": "createChangeState",
                 "NewStateId": "BOReadyToIssue",
                 "AdditionalData": {
                   "Data": {
