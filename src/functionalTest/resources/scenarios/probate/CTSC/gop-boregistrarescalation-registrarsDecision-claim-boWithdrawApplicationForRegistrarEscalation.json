@@ -146,9 +146,9 @@
               "destination": "RestEndpoint",
               "template": "minimal-ccd-event-message-probate.json",
               "replacements": {
-                "event": "boWithdrawApplicationForRegistrarEscalation",
-                "fromState": "BORegistrarEscalation",
-                "state": "BOCaseClosed"
+                "EventId": "boWithdrawApplicationForRegistrarEscalation",
+                "PreviousStateId": "BORegistrarEscalation",
+                "NewStateId": "BOCaseClosed"
               }
             }
           ]

@@ -163,9 +163,9 @@
               "destination": "RestEndpoint",
               "template": "minimal-ccd-event-message-probate.json",
               "replacements": {
-                "event": "boStopCaseForCaseMatchingForExamining",
-                "fromState": "BOReadyToIssue",
-                "state": "BOReadyToIssue"
+                "EventId": "boStopCaseForCaseMatchingForExamining",
+                "PreviousStateId": "BOReadyToIssue",
+                "NewStateId": "BOReadyToIssue"
               }
             }
           ]
