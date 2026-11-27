@@ -163,9 +163,9 @@
               "destination": "RestEndpoint",
               "template": "minimal-ccd-event-message-probate.json",
               "replacements": {
-                "event": "boEscalateToRegistrar",
-                "fromState": "CasePrinted",
-                "state": "CasePrinted"
+                "EventId": "boEscalateToRegistrar",
+                "PreviousStateId": "CasePrinted",
+                "NewStateId": "CasePrinted"
               }
             }
           ]

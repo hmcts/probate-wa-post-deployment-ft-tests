@@ -163,9 +163,9 @@
               "destination": "RestEndpoint",
               "template": "minimal-ccd-event-message-probate.json",
               "replacements": {
-                "event": "boIssueGrantForCaseMatching",
-                "fromState": "CasePrinted",
-                "state": "CasePrinted"
+                "EventId": "boIssueGrantForCaseMatching",
+                "PreviousStateId": "CasePrinted",
+                "NewStateId": "CasePrinted"
               }
             }
           ]
