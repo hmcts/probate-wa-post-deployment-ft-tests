@@ -113,7 +113,42 @@
               "destination": "RestEndpoint",
               "template": "minimal-ccd-event-message-probate.json",
               "replacements": {
-                "EventId": "changeState",
+                "EventId": "cancelChangeState",
+                "NewStateId": "BOCaseMatchingIssueGrant",
+                "AdditionalData": {
+                  "Data": {
+                    "evidenceHandled": false,
+                    "caseType": "intestacy",
+                    "boHandoffReasonList": []
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "expectations": [
+        {
+          "credentials": {
+            "key": "CTSC-Administrator"
+          },
+          "status": 200,
+          "numberOfTasksAvailable": 0
+        }
+      ]
+    },
+    {
+      "request": {
+        "credentials": {
+          "key": "team-leader"
+        },
+        "input": {
+          "eventMessages": [
+            {
+              "destination": "RestEndpoint",
+              "template": "minimal-ccd-event-message-probate.json",
+              "replacements": {
+                "EventId": "createChangeState",
                 "NewStateId": "BOCaseMatchingIssueGrant",
                 "AdditionalData": {
                   "Data": {

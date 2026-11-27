@@ -1,5 +1,5 @@
 {
-  "description": "GOP BOCaseMatchingIssueGrant changeState handleEvidence true DeBonisNon - CLAIM COMPLETE",
+  "description": "Intermittent GOP BOCaseMatchingIssueGrant changeState handleEvidence true DeBonisNon - CLAIM COMPLETE",
   "enabled": false,
   "jurisdiction": "PROBATE",
   "caseType": "GrantOfRepresentation",
@@ -33,7 +33,7 @@
               "destination": "RestEndpoint",
               "template": "minimal-ccd-event-message-probate.json",
               "replacements": {
-                "EventId": "changeState",
+                "EventId": "cancelChangeState",
                 "NewStateId": "BOCaseMatchingIssueGrant",
                 "AdditionalData": {
                   "Data": {
@@ -61,7 +61,15 @@
           ]
         }
       },
-      "expectations": []
+      "expectations": [
+        {
+          "credentials": {
+            "key": "CTSC-Administrator"
+          },
+          "status": 200,
+          "numberOfTasksAvailable": 0
+        }
+      ]
     },
     {
       "request": {
@@ -101,13 +109,27 @@
               "destination": "RestEndpoint",
               "template": "minimal-ccd-event-message-probate.json",
               "replacements": {
-                "EventId": "handleEvidence",
-                "NewStateId": "CasePrinted",
+                "EventId": "createChangeState",
+                "NewStateId": "BOCaseMatchingIssueGrant",
                 "AdditionalData": {
                   "Data": {
                     "evidenceHandled": true,
                     "caseType": "gop",
-                    "boHandoffReasonList": []
+                    "caseHandedOffToLegacySite": true,
+                    "boHandoffReasonList": [
+                      {
+                        "id": "df3be732-2172-49da-80fe-cad8586e4928",
+                        "value": {
+                          "caseHandoffReason": "DeBonisNon"
+                        }
+                      },
+                      {
+                        "id": "dddbe732-2172-49da-80fe-cad8586e4928",
+                        "value": {
+                          "caseHandoffReason": "OtherReason"
+                        }
+                      }
+                    ]
                   }
                 }
               }
