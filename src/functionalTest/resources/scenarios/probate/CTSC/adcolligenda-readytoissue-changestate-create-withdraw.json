@@ -236,9 +236,9 @@
               "destination": "RestEndpoint",
               "template": "minimal-ccd-event-message-probate.json",
               "replacements": {
-                "event": "boWithdrawApplicationForReadyToIssue",
-                "fromState": "BOReadyToIssue",
-                "state": "BOCaseClosed"
+                "EventId": "boWithdrawApplicationForReadyToIssue",
+                "PreviousStateId": "BOReadyToIssue",
+                "NewStateId": "BOCaseClosed"
               }
             }
           ]

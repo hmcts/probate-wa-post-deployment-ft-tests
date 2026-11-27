@@ -163,9 +163,9 @@
               "destination": "RestEndpoint",
               "template": "minimal-ccd-event-message-probate.json",
               "replacements": {
-                "event": "moveToCWEscalation",
-                "fromState": "CasePrinted",
-                "state": "CasePrinted"
+                "EventId": "moveToCWEscalation",
+                "PreviousStateId": "CasePrinted",
+                "NewStateId": "CasePrinted"
               }
             }
           ]

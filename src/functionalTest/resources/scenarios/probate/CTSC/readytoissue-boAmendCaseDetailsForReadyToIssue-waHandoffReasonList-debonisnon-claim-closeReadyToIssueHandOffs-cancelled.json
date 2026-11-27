@@ -266,9 +266,9 @@
               "destination": "RestEndpoint",
               "template": "minimal-ccd-event-message-probate.json",
               "replacements": {
-                "event": "closeReadyToIssueHandOffs",
-                "fromState": "BOReadyToIssue",
-                "state": "BOReadyToIssue"
+                "EventId": "closeReadyToIssueHandOffs",
+                "PreviousStateId": "BOReadyToIssue",
+                "NewStateId": "BOReadyToIssue"
               }
             }
           ]
